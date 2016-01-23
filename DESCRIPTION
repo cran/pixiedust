@@ -1,7 +1,7 @@
 Package: pixiedust
-Date: 2015-10-14
+Date: 2016-01-08
 Title: Tables so Beautifully Fine-Tuned You Will Believe It's Magic
-Version: 0.5.0
+Version: 0.6.1
 Authors@R: person("Benjamin", "Nutter", email = "nutter@battelle.org", role = c("aut", "cre"))
 Description: The introduction of the broom package has made converting model objects into data 
   frames as simple as a single function.  While the broom package focuses on providing tidy
@@ -21,8 +21,8 @@ VignetteBuilder: knitr
 URL: https://github.com/nutterb/pixiedust
 BugReports: https://github.com/nutterb/pixiedust/issues
 NeedsCompilation: no
-Packaged: 2015-10-14 22:09:42 UTC; Nutter
+Packaged: 2016-01-23 14:19:50 UTC; Nutter
 Author: Benjamin Nutter [aut, cre]
 Maintainer: Benjamin Nutter <nutter@battelle.org>
 Repository: CRAN
-Date/Publication: 2015-10-15 13:24:59
+Date/Publication: 2016-01-23 23:17:53

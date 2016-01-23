@@ -5,8 +5,10 @@
 #' @importFrom dplyr ungroup
 #' @importFrom tidyr spread
 
-print_dust_console <- function(x, ..., return_df = FALSE)
+print_dust_console <- function(x, ..., return_df = FALSE, asis=TRUE)
 {
+  
+  if (!is.null(x$caption)) increment_pixie_count()
   
   #* Determine the number of divisions
   #* It looks more complicated than it is, but the gist of it is
@@ -42,6 +44,8 @@ print_dust_console <- function(x, ..., return_df = FALSE)
                             if (i == total_div) foot else interfoot)
     if (return_df) DF <- rbind(DF, tbl)
     else {
+      if (!is.null(x$caption)) cat("Table ", get_pixie_count(), ": ", x$caption, "\n\n",
+                                   sep = "")
       print(as.data.frame(tbl))
       cat("\n\n")
     }

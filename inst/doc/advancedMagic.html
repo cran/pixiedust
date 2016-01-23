@@ -10,7 +10,7 @@
 
 <meta name="author" content="Benjamin Nutter" />
 
-<meta name="date" content="2015-10-14" />
+<meta name="date" content="2016-01-23" />
 
 <title>Advanced Magic with pixiedust</title>
 
@@ -72,7 +72,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Advanced Magic with <code>pixiedust</code></h1>
 <h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2015-10-14</em></h4>
+<h4 class="date"><em>2016-01-23</em></h4>
 </div>
 
 <div id="TOC">
@@ -103,13 +103,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>For parts of this vignette, we will work with the <code>mtcars</code> data frame. But first we make some additions to the data. For simplicity, we will only use the first ten rows of the data frame. Additionally, we will add labels to the variables using the <code>label</code> function from the <code>Hmisc</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
 <pre><code>## 
-## Attaching package: 'dplyr'
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
 ## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pixiedust)
@@ -337,8 +335,9 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>))</code></pre></div>
 <pre><code>## Warning: attributes are not identical across measure variables; they will
-## be dropped</code></pre>
-<pre><code>## Warning: attributes are not identical across measure variables; they will
+## be dropped
+
+## Warning: attributes are not identical across measure variables; they will
 ## be dropped</code></pre>
 <p><table style = 'border-collapse:collapse;'><tr><th colspan = '1'; rowspan = '1'; style='background-color:gray;'>mpg</th>
 <th colspan = '1'; rowspan = '1'; style='background-color:gray;'>cyl</th>
@@ -1093,8 +1092,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <th colspan = '1'; rowspan = '1'; style=''>statistic</th>
 <th colspan = '1'; rowspan = '1'; style=''>p.value</th></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style=''>Gas Mileage</td>
-<td colspan = '1'; rowspan = '1'; style=''></td>
+<tr><td colspan = '1'; rowspan = '1'; style=''>NA</td>
+<td colspan = '1'; rowspan = '1'; style=''>NA</td>
 <td colspan = '1'; rowspan = '1'; style=''>9.37</td>
 <td colspan = '1'; rowspan = '1'; style=''>8.37</td>
 <td colspan = '1'; rowspan = '1'; style=''>1.12</td>
@@ -1119,7 +1118,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-3.93</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.74</td>
 <td colspan = '1'; rowspan = '1'; style=''>-5.29</td>
-<td colspan = '1'; rowspan = '1'; style=''>&lt;  0.001</td></tr>
+<td colspan = '1'; rowspan = '1'; style=''>< 0.001</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>factor(gear)</td>
 <td colspan = '1'; rowspan = '1'; style=''>4</td>
@@ -1148,8 +1147,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <th colspan = '1'; rowspan = '1'; style=''>statistic</th>
 <th colspan = '1'; rowspan = '1'; style=''>p.value</th></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style=''>Gas Mileage</td>
-<td colspan = '1'; rowspan = '1'; style=''></td>
+<tr><td colspan = '1'; rowspan = '1'; style=''>NA</td>
+<td colspan = '1'; rowspan = '1'; style=''>NA</td>
 <td colspan = '1'; rowspan = '1'; style=''>9.37</td>
 <td colspan = '1'; rowspan = '1'; style=''>8.37</td>
 <td colspan = '1'; rowspan = '1'; style=''>1.12</td>
@@ -1174,7 +1173,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-3.93</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.74</td>
 <td colspan = '1'; rowspan = '1'; style=''>-5.29</td>
-<td colspan = '1'; rowspan = '1'; style=''>&lt;  0.001</td></tr>
+<td colspan = '1'; rowspan = '1'; style=''>< 0.001</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>factor(gear)</td>
 <td colspan = '1'; rowspan = '1'; style=''>4 vs. 3</td>
@@ -1206,8 +1205,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <th colspan = '1'; rowspan = '1'; style=''>statistic</th>
 <th colspan = '1'; rowspan = '1'; style=''>p.value</th></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style=''>Gas Mileage</td>
-<td colspan = '1'; rowspan = '1'; style=''></td>
+<tr><td colspan = '1'; rowspan = '1'; style=''>NA</td>
+<td colspan = '1'; rowspan = '1'; style=''>NA</td>
 <td colspan = '1'; rowspan = '1'; style=''>9.55</td>
 <td colspan = '1'; rowspan = '1'; style=''>9.45</td>
 <td colspan = '1'; rowspan = '1'; style=''>1.01</td>
@@ -1232,7 +1231,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-3.91</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.85</td>
 <td colspan = '1'; rowspan = '1'; style=''>-4.62</td>
-<td colspan = '1'; rowspan = '1'; style=''>&lt;  0.001</td></tr>
+<td colspan = '1'; rowspan = '1'; style=''>< 0.001</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>Forward Gears</td>
 <td colspan = '1'; rowspan = '1'; style=''>4 vs. 3</td>
@@ -1276,12 +1275,12 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <th colspan = '1'; rowspan = '1'; style=''>statistic</th>
 <th colspan = '1'; rowspan = '1'; style=''>p.value</th></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>Gas Mileage</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '></td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>9.37</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>8.37</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>1.12</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>0.27</td></tr>
+<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>NA</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>NA</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>9.37</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>8.37</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>1.12</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>0.27</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>1/4 mile time</td>
 <td colspan = '1'; rowspan = '1'; style=''></td>
@@ -1302,7 +1301,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-3.93</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.74</td>
 <td colspan = '1'; rowspan = '1'; style=''>-5.29</td>
-<td colspan = '1'; rowspan = '1'; style=''>&lt;  0.001</td></tr>
+<td colspan = '1'; rowspan = '1'; style=''>< 0.001</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>Forward Gears</td>
 <td colspan = '1'; rowspan = '1'; style=''>4 vs. 3</td>
@@ -1318,12 +1317,12 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-0.13</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.9</td></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>r.squared</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>0.85</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '></td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '></td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>logLik</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>-72.04</td></tr>
+<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>r.squared</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>0.85</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '></td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '></td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>logLik</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>-72.04</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>adj.r.squared</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.82</td>
@@ -1383,12 +1382,12 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <th colspan = '1'; rowspan = '1'; style=''>statistic</th>
 <th colspan = '1'; rowspan = '1'; style=''>p.value</th></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>Gas Mileage</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '></td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>9.37</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>8.37</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>1.12</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>0.27</td></tr>
+<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>NA</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>NA</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>9.37</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>8.37</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>1.12</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>0.27</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>1/4 mile time</td>
 <td colspan = '1'; rowspan = '1'; style=''></td>
@@ -1409,7 +1408,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-3.93</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.74</td>
 <td colspan = '1'; rowspan = '1'; style=''>-5.29</td>
-<td colspan = '1'; rowspan = '1'; style=''>&lt;  0.001</td></tr>
+<td colspan = '1'; rowspan = '1'; style=''>< 0.001</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>Forward Gears</td>
 <td colspan = '1'; rowspan = '1'; style=''>4 vs. 3</td>
@@ -1425,12 +1424,12 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <td colspan = '1'; rowspan = '1'; style=''>-0.13</td>
 <td colspan = '1'; rowspan = '1'; style=''>0.9</td></tr>
 
-<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>AIC</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>158.08</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '></td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '></td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>adj.r.squared</td>
-<td colspan = '1'; rowspan = '1'; style='border-top:1px solid black; '>0.82</td></tr>
+<tr><td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>AIC</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>158.08</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '></td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '></td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>adj.r.squared</td>
+<td colspan = '1'; rowspan = '1'; style='border-top:1px solid Black; '>0.82</td></tr>
 
 <tr><td colspan = '1'; rowspan = '1'; style=''>BIC</td>
 <td colspan = '1'; rowspan = '1'; style=''>168.34</td>
@@ -1511,8 +1510,9 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>))</code></pre></div>
 <pre><code>## Warning: attributes are not identical across measure variables; they will
-## be dropped</code></pre>
-<pre><code>## Warning: attributes are not identical across measure variables; they will
+## be dropped
+
+## Warning: attributes are not identical across measure variables; they will
 ## be dropped</code></pre>
 <pre><code>##               mpg       cyl         disp          hp            drat
 ## 1     Gas Mileage Cylinders Displacement Horse Power Rear Axle Ratio
@@ -1670,7 +1670,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</code></pre></div>
 <pre><code>##           label  level estimate std.error statistic p.value
-## 1   Gas Mileage            9.37      8.37      1.12    0.27
+## 1          &lt;NA&gt;   &lt;NA&gt;     9.37      8.37      1.12    0.27
 ## 2 1/4 mile time            1.24      0.38      3.25   0.003
 ## 3    factor(am) Manual     3.15      1.94      1.62    0.12
 ## 4        Weight           -3.93      0.74     -5.29 &lt; 0.001
@@ -1682,7 +1682,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</code></pre></div>
 <pre><code>##           label         level_detail estimate std.error statistic p.value
-## 1   Gas Mileage                          9.37      8.37      1.12    0.27
+## 1          &lt;NA&gt;                 &lt;NA&gt;     9.37      8.37      1.12    0.27
 ## 2 1/4 mile time                          1.24      0.38      3.25   0.003
 ## 3    factor(am) Manual vs. Automatic     3.15      1.94      1.62    0.12
 ## 4        Weight                         -3.93      0.74     -5.29 &lt; 0.001
@@ -1697,7 +1697,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</code></pre></div>
 <pre><code>##           label         level_detail estimate std.error statistic p.value
-## 1   Gas Mileage                          9.55      9.45      1.01    0.32
+## 1          &lt;NA&gt;                 &lt;NA&gt;     9.55      9.45      1.01    0.32
 ## 2 1/4 mile time                          1.23      0.51      2.39   0.025
 ## 3  Transmission Manual vs. Automatic     3.17      2.01      1.58    0.13
 ## 4        Weight                         -3.91      0.85     -4.62 &lt; 0.001
@@ -1718,7 +1718,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</code></pre></div>
 <pre><code>##            label         level_detail estimate std.error   statistic
-## 1    Gas Mileage                          9.37      8.37        1.12
+## 1           &lt;NA&gt;                 &lt;NA&gt;     9.37      8.37        1.12
 ## 2  1/4 mile time                          1.24      0.38        3.25
 ## 3   Transmission Manual vs. Automatic     3.15      1.94        1.62
 ## 4         Weight                         -3.93      0.74       -5.29
@@ -1759,7 +1759,7 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</code></pre></div>
 <pre><code>##           label         level_detail estimate std.error     statistic
-## 1   Gas Mileage                          9.37      8.37          1.12
+## 1          &lt;NA&gt;                 &lt;NA&gt;     9.37      8.37          1.12
 ## 2 1/4 mile time                          1.24      0.38          3.25
 ## 3  Transmission Manual vs. Automatic     3.15      1.94          1.62
 ## 4        Weight                         -3.93      0.74         -5.29
@@ -2009,8 +2009,9 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>))</code></pre></div>
 <pre><code>## Warning: attributes are not identical across measure variables; they will
-## be dropped</code></pre>
-<pre><code>## Warning: attributes are not identical across measure variables; they will
+## be dropped
+
+## Warning: attributes are not identical across measure variables; they will
 ## be dropped</code></pre>
 <table>
 <thead>
@@ -2900,8 +2901,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Gas Mileage</td>
-<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="right">9.37</td>
 <td align="right">8.37</td>
 <td align="right">1.12</td>
@@ -2969,8 +2970,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Gas Mileage</td>
-<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="right">9.37</td>
 <td align="right">8.37</td>
 <td align="right">1.12</td>
@@ -3041,8 +3042,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Gas Mileage</td>
-<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="right">9.55</td>
 <td align="right">9.45</td>
 <td align="right">1.01</td>
@@ -3126,8 +3127,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Gas Mileage</td>
-<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="right">9.37</td>
 <td align="right">8.37</td>
 <td align="right">1.12</td>
@@ -3253,8 +3254,8 @@ custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span cl
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Gas Mileage</td>
-<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="right">9.37</td>
 <td align="right">8.37</td>
 <td align="right">1.12</td>

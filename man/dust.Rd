@@ -8,7 +8,7 @@
 dust(object, ..., tidy_df = FALSE, keep_rownames = FALSE,
   glance_foot = FALSE, glance_stats = NULL, col_pairs = 2,
   byrow = FALSE, descriptors = "term", numeric_level = c("term",
-  "term_plain", "label"))
+  "term_plain", "label"), caption = NULL, float = TRUE, longtable = FALSE)
 
 redust(x, table, part = c("head", "foot", "interfoot", "body"))
 }
@@ -62,6 +62,21 @@ when a numeric has an interaction with a factor.  Acceptable inputs
 are \code{"term"}, \code{"term_plain"}, and \code{"label"}.
 See the full documentation for the unexported function \code{\link{tidy_levels_labels}}.}
 
+\item{caption}{A character string giving the caption for the table.}
+
+\item{float}{A logical used only in LaTeX output.  When \code{TRUE}, the table is
+set within a \code{table} environment.  The default is \code{TRUE}, as with
+\code{xtable}.}
+
+\item{longtable}{Allows the user to print a table in multiple sections.
+This is useful when
+a table has more rows than will fit on a printed page.  Acceptable inputs are \code{FALSE},
+indicating that only one table is printed (default); \code{TRUE} that the table should be
+split into multiple tables with the default number of rows per table (see "Longtable"); or a
+positive integer indicating how many rows per table to include. All other values are
+interpreted as \code{FALSE}.  In LaTeX output, remember that after each section, a page
+break is forced. This setting may also be set from \code{sprinkle}.}
+
 \item{x}{A dust object}
 
 \item{table}{A data frame of similar dimensions of the part being replaced.}
@@ -106,6 +121,14 @@ The \code{head} object describes what each column of the table
   By default, all content is printed as a single table.  Using the
   \code{longtable} argument in the \code{\link{sprinkle}} function can change this
   setting.
+
+  The \code{table_width} element is specific to LaTeX tables.  This is a reference
+  value for when column widths are specified in terms of the \code{\%} units.  For
+  example, a column width of \code{20\%} will be defined as \code{table_width * .20}.
+  The value in \code{table_width} is assumed to be in inches and defaults to 6.
+
+  The \code{tabcolsep} object determines the spacing between columns in a
+  LaTeX table in pt.  By default, it is set at 6.
 
   The \code{print_method} object determines how the table is rendered when
   the \code{print} method is invoked.  The default is to print to the
