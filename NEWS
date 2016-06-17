@@ -1,3 +1,34 @@
+### 0.7.4 (17 June 2016)
+* Guard against changes to `options()$scipen` (Issue #62)
+* Remove remaining use of `ArgumentCheck` and replace with `checkmate`
+
+#### 0.7.3 (10 June 2016)
+* Fixed rotation in HTML tables
+* Created a new argument for `print_dust_html` (Issue #57) to 
+  give the user control over the amount of white space 
+  following HTML tables.
+* The `replace` sprinkle is now applied during printing.  It 
+  had been applied in `sprinkle`, which violated the philosophy
+  of not changing the content of the data frame until the last
+  possible moment.
+* Added some extra unit tests.
+
+#### 0.7.2 (19 May 2016)
+* Fixed the padding specification in HTML tables.
+
+#### 0.7.1 (4 May 2016)
+* the sprinkles `bg`, `border_color` and `font_color` now interpret
+  "transparent" as a valid color. In HTML, it is interpreted as 
+  `"rgba(255,255,255,0)"`; in LaTeX it is interpreted as `""`.
+* New Sprinkle: `sanitize`. Defaults to `FALSE` and replaces automatic
+  sanitization of text in LaTeX output via `Hmisc::latexTranslate`.
+  This is not backward compatible with 0.7.0, but _is_ consistent with
+  earlier versions of `pixiedust`.  You must opt in to sanitization now.
+* New Sprinkle: `sanitize_args`. Takes a list of arguments to pass 
+  to `Hmisc::latexTranslate`, allowing sanitization to be extended to
+  character sets defined by the user.
+
+
 #### 0.7.0 (15 April 2016)
 * Backward compatibility: The way `pixiedust` deals with 
   colors has changed.  If you are using custom defined colors in your 

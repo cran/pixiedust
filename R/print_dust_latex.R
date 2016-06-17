@@ -41,9 +41,9 @@ print_dust_latex <- function(x, ..., asis=TRUE)
   #* total number of divisions: ceiling(total_rows / longtable_rows)
   #* The insane looking data frame is just to make a reference of what rows 
   #*   go in what division.
-  if (!is.numeric(x$longtable) & x$longtable) longtable_rows <- 25
-  else if (!is.numeric(x$longtable) & !x$longtable) longtable_rows <- max(x$body$row)
-  else longtable_rows <- x$longtable
+  if (!is.numeric(x$longtable) & x$longtable) longtable_rows <- 25L
+  else if (!is.numeric(x$longtable) & !x$longtable) longtable_rows <- as.integer(max(x$body$row))
+  else longtable_rows <- as.integer(x$longtable)
   
   tab_env <- if (is.numeric(x$longtable) || x$longtable) "longtable" else "tabular"
   
@@ -176,14 +176,21 @@ part_prep_latex <- function(part, col_width, col_halign_default, head=FALSE)
     part$value[logic] <-
     as.character(roundSafe(part$value[logic], as.numeric(part$round[logic])))
 
+  #* Replacement
+  logic <- !is.na(part[["replace"]])
+  part[["value"]][logic] <- part[["replace"]][logic]
+  
   #* Set NA (missing) values to na_string
   logic <- is.na(part$value) & !is.na(part$na_string)
   part$value[logic] <- 
     part$na_string[logic]
   
   #* Sanitize value strings
-  logic <- !is.na(part[["value"]])
-  part[["value"]][logic] <- Hmisc::latexTranslate(part[["value"]][logic])
+  logic <- part[["sanitize"]]
+  part[["value"]][logic] <- sanitize(part[["value"]][logic],
+                                     part[["sanitize_args"]][logic])
+
+
   
   #* Bold and italic
   boldify <- part$bold
@@ -340,6 +347,8 @@ paste_latex_part <- function(part, row_height, newline = " \\\\"){
 #**************************************************
 convertColor <- function(color){
   if (length(color) == 0) return(character(0))
+  
+  color <- gsub("rgba[(]255,255,255,0[)]", "", color)
   
   if (grepl("#", color)){
     return(paste0("[HTML]{", sub("#", "", color), "}"))
@@ -541,6 +550,21 @@ latex_horizontal_border_code <- function(x, col){
                           "\\cline{", col, "-", col, "}")
     return(border_code)
   }
+}
+
+#* NA safe sanitization function
+sanitize <- function(x, args)
+{
+  sanitize_index <- !is.na(x)
+  if (sum(sanitize_index))
+  {
+    x[sanitize_index] <- 
+      do.call(what = Hmisc::latexTranslate,
+              args = c(list(object = x[sanitize_index]),
+                       eval(parse(text = args[sanitize_index])))
+      )
+  }
+  x
 }
 
 

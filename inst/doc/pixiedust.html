@@ -12,7 +12,7 @@
 
 <meta name="author" content="Benjamin Nutter" />
 
-<meta name="date" content="2016-04-16" />
+<meta name="date" content="2016-06-17" />
 
 <title>Creating Magic with pixiedust</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Creating Magic with <code>pixiedust</code></h1>
 <h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-04-16</em></h4>
+<h4 class="date"><em>2016-06-17</em></h4>
 
 
 <div id="TOC">
@@ -129,7 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The process of building these tables involves an initial dusting with the <code>dust</code> function, and then the addition of “sprinkles” to fine tune rows, columns, or even individual cells. The initial dusting creates a presentation very similar to the <code>broom</code> output.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pixiedust)
 <span class="kw">dust</span>(fit)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>estimate</th>
@@ -179,9 +179,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.130743</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.896985</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>Realistically, the <code>dust</code> output is very similar to the <code>broom</code> output. Some differences are that the <code>broom</code> output retains the class of the variables. <code>term</code> is a character vector, the other vectors are numeric. When this output is <code>dust</code>ed, however, these are all turned into character values (but with a reference to its original class). Don’t panic, though. This isn’t a disadvantage, it’s the key feature of <code>pixiedust</code>. <code>dust</code> converts the <code>broom</code> output into a table where each cell in the table is represented by a row (Take a look at <code>dust(fit)$body</code> to see what I mean). This is the process by which we get control over every last detail of the table. By the time we’re done, we’ll easily produce tables that look like this:</p>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -231,14 +231,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:plum;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:plum;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>Okay, maybe not those exact colors. But you have to admit, they are very pixie like colors, are they not?</p>
 <div id="formatting-cell-values" class="section level1">
 <h1><span class="header-section-number">1</span> Formatting Cell Values</h1>
 <p>As we noted earlier, the default output of <code>dust</code> has far too many decimal places. In most cases, the decimal places returned probably exceed the accuracy of the values in the data. We can sprinkle the values with <code>round</code> or any other function to suit our needs. First, let’s take a look at the <code>round</code> sprinkle.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(fit) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>), <span class="dt">round =</span> <span class="dv">2</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>estimate</th>
@@ -288,7 +288,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.13</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.896985</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>That already makes a big difference. We could have rounded the p-values as well, but we’ll do something different with those. We’ll use another function to format the p-values into strings. In the following code, we’ll pass a function call to the <code>fn</code> argument of <code>sprinkle</code>. There are two important aspects of this call to be aware of</p>
 <ol style="list-style-type: decimal">
 <li>The function is wrapped in <code>quote</code>. <code>sprinkles</code> uses standard evaluation, and passing a function wrapped in <code>quote</code> allows us to delay its execution.</li>
@@ -298,7 +298,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>),
            <span class="dt">round =</span> <span class="dv">3</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="st">&quot;p.value&quot;</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) </code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>estimate</th>
@@ -348,7 +348,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 </div>
 <div id="columns-names" class="section level1">
 <h1><span class="header-section-number">2</span> Columns Names</h1>
@@ -359,7 +359,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
            <span class="dt">round =</span> <span class="dv">3</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="st">&quot;p.value&quot;</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle_colnames</span>(<span class="dt">term =</span> <span class="st">&quot;Term&quot;</span>, <span class="dt">p.value =</span> <span class="st">&quot;P-value&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>estimate</th>
@@ -409,7 +409,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>Naming the arguments has advantages for reproducibility, as <code>pixiedust</code> will correctly assign the column names regardless of order.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(fit) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>),
@@ -418,7 +418,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">sprinkle_colnames</span>(<span class="dt">term =</span> <span class="st">&quot;Term&quot;</span>, <span class="dt">p.value =</span> <span class="st">&quot;P-value&quot;</span>, 
                     <span class="dt">std.error =</span> <span class="st">&quot;SE&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;T-statistic&quot;</span>,
                     <span class="dt">estimate =</span> <span class="st">&quot;Coefficient&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -468,14 +468,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>If all of the columns are to be renamed, we may forego naming the arguments <em>so long as we are careful to provide the new names in the same order they appear in the table</em> (from left to right). If the new names are provided in the wrong order, they will be applied to the table incorrectly. Thus, it is recommended to name the arguments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(fit) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>),
            <span class="dt">round =</span> <span class="dv">3</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="st">&quot;p.value&quot;</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle_colnames</span>(<span class="st">&quot;Term&quot;</span>, <span class="st">&quot;Coefficient&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;T-statistic&quot;</span>, <span class="st">&quot;P-value&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -525,7 +525,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>In the case that you provide a different number of arguments than there are columns in the table, an error is returned stating such.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(fit) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>),
@@ -545,7 +545,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
            <span class="dt">round =</span> <span class="dv">3</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="st">&quot;p.value&quot;</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle_colnames</span>(<span class="st">&quot;Term&quot;</span>, <span class="st">&quot;Coefficient&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;T-statistic&quot;</span>, <span class="st">&quot;P-value&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -595,7 +595,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>Values are always replaced down the column before across the row. To illustrate, let’s replace the cells in rows 2 - 3 and columns 3 - 4 with the values 100, 200, 300, and 400. If we want the values to read in sequential order from left to right before going to the next line, we make the replacement call (we will also italicize these cells to make them easier to find)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(fit) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">2</span>:<span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">3</span>:<span class="dv">4</span>, 
@@ -605,7 +605,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
            <span class="dt">round =</span> <span class="dv">3</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="st">&quot;p.value&quot;</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle_colnames</span>(<span class="st">&quot;Term&quot;</span>, <span class="st">&quot;Coefficient&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;T-statistic&quot;</span>, <span class="st">&quot;P-value&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -655,7 +655,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 </div>
 <div id="borders-and-padding" class="section level1">
 <h1><span class="header-section-number">4</span> Borders and Padding</h1>
@@ -679,7 +679,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>All of these sprinkles have default values they can take, so unless we need to customize more than one sprinkle, we need only specify one of the five in order to get all of them to take effect.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">border_color =</span> <span class="st">&quot;orchid&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -695,11 +695,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.27</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>qsec</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>1.245</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>0.383</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>3.252</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>0.003</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>qsec</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>1.245</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>0.383</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>3.252</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>0.003</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(am)Manual</td>
@@ -709,11 +709,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.12</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>wt</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>-3.926</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>0.743</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>-5.286</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;'>< 0.001</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>wt</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>-3.926</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>0.743</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>-5.286</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>< 0.001</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(gear)4</td>
@@ -729,7 +729,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>If we want to eliminate the borders between cells, we have to do a little more work.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">cols =</span> <span class="dv">1</span>, 
@@ -741,7 +741,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">cols =</span> <span class="dv">2</span>:<span class="dv">4</span>,
            <span class="dt">border =</span> <span class="kw">c</span>(<span class="st">&quot;top&quot;</span>, <span class="st">&quot;bottom&quot;</span>),
            <span class="dt">border_color =</span> <span class="st">&quot;orchid&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -757,11 +757,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.27</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;'>qsec</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;'>1.245</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;'>0.383</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;'>3.252</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-right:1px solid orchid;'>0.003</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);'>qsec</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);'>1.245</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);'>0.383</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);'>3.252</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>0.003</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(am)Manual</td>
@@ -771,11 +771,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.12</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;'>wt</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;'>-3.926</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;'>0.743</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;'>-5.286</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-right:1px solid orchid;'>< 0.001</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);'>wt</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);'>-3.926</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);'>0.743</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);'>-5.286</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);'>< 0.001</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(gear)4</td>
@@ -791,12 +791,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>We can further separate these rows by adding more padding to the cells. In this example, for simplicity, we’ll allow the lines between cells.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">border_color =</span> <span class="st">&quot;orchid&quot;</span>,
            <span class="dt">pad =</span> <span class="dv">15</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -812,11 +812,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.27</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>qsec</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>1.245</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>0.383</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>3.252</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>0.003</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>qsec</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>1.245</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>0.383</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>3.252</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>0.003</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(am)Manual</td>
@@ -826,11 +826,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.12</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>wt</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>-3.926</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>0.743</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>-5.286</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid orchid;border-bottom:1px solid orchid;border-left:1px solid orchid;border-right:1px solid orchid;padding:15;'>< 0.001</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>wt</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>-3.926</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>0.743</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>-5.286</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;border-top:1px solid rgba(218,112,214,255);border-bottom:1px solid rgba(218,112,214,255);border-left:1px solid rgba(218,112,214,255);border-right:1px solid rgba(218,112,214,255);padding:15px;'>< 0.001</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(gear)4</td>
@@ -846,14 +846,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 </div>
 <div id="bold-and-italic-text" class="section level1">
 <h1><span class="header-section-number">5</span> Bold and Italic Text</h1>
 <p>A more conventional way to draw attention to these rows would be to print them in bold text.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">bold =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -903,11 +903,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>The text could also be italicized either separately or concurrently. He we show the italics printed concurrently.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">bold =</span> <span class="ot">TRUE</span>, <span class="dt">italic=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -957,14 +957,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 </div>
 <div id="backgrounds" class="section level1">
 <h1><span class="header-section-number">6</span> Backgrounds</h1>
 <p>Backgrounds are added using the <code>bg</code> sprinkle, which accepts X11 colors, hexidecimal colors, rgb colors, and for HTML rgba colors (the a specifies the transparency). To put in a background in the rows showing statistical significance, we need only specify the color.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">bg =</span> <span class="st">&quot;orchid&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -980,11 +980,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.27</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;background-color:orchid;'>qsec</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>1.245</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>0.383</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>3.252</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>0.003</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;background-color:rgba(218,112,214,255);'>qsec</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>1.245</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>0.383</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>3.252</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>0.003</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(am)Manual</td>
@@ -994,11 +994,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.12</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;background-color:orchid;'>wt</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>-3.926</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>0.743</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>-5.286</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:orchid;'>< 0.001</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;background-color:rgba(218,112,214,255);'>wt</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>-3.926</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>0.743</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>-5.286</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:rgba(218,112,214,255);'>< 0.001</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(gear)4</td>
@@ -1014,11 +1014,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>If we decide that color is a little bit strong, we can lighten it up a little with the transparency. We have to look up the rgb specification for the orchid color (there are lots of web resources for this; X11 Color Names on Wikipedia is a good place to start).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">bg =</span> <span class="st">&quot;rgba(218,112,214,.5)&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -1068,11 +1068,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>If we aren’t interested in coloring just those two rows, we can apply color to the entire table with the <code>bg_pattern</code> sprinkle. This sprinkle accepts as many colors as you want to cycle through.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basetable %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg_pattern =</span> <span class="kw">c</span>(<span class="st">&quot;orchid&quot;</span>, <span class="st">&quot;plum&quot;</span>))</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -1122,7 +1122,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:plum;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;background-color:plum;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 </div>
 <div id="font-sizes-and-colors" class="section level1">
 <h1><span class="header-section-number">7</span> Font Sizes and Colors</h1>
@@ -1132,7 +1132,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
            <span class="dt">font_color =</span> <span class="st">&quot;orchid&quot;</span>,
            <span class="dt">font_size =</span> <span class="dv">24</span>,
            <span class="dt">font_size_units =</span> <span class="st">&quot;pt&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>Term</th>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;'>Coefficient</th>
@@ -1148,11 +1148,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.27</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;color:orchid;font-size:24pt;'>qsec</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>1.245</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>0.383</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>3.252</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>0.003</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;color:rgba(218,112,214,255);font-size:24pt;'>qsec</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>1.245</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>0.383</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>3.252</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>0.003</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(am)Manual</td>
@@ -1162,11 +1162,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.12</td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;color:orchid;font-size:24pt;'>wt</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>-3.926</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>0.743</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>-5.286</td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;color:orchid;font-size:24pt;'>< 0.001</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;color:rgba(218,112,214,255);font-size:24pt;'>wt</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>-3.926</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>0.743</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>-5.286</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;color:rgba(218,112,214,255);font-size:24pt;'>< 0.001</td>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>factor(gear)4</td>
@@ -1182,7 +1182,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 <p>(Woah! That was a bit too much.)</p>
 </div>
 <div id="dimensions-and-alignment" class="section level1">
@@ -1248,7 +1248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.131</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9</td>
 </tr>
-</table><br/><br/> # Rotating Text</p>
+</table></br></br> # Rotating Text</p>
 <p>There is a sprinkle available to rotate the text in a cell. I don’t recommend using it. Rotated text is harder to read, and communicating concepts is the whole point of the table. However, sometimes it might be necessary. For our example, we’ll take the summary of the <code>mtcars</code> data set as returned by <code>broom</code>.</p>
 <p>Notice here that when I apply the rotation, I added an argument to <code>sprinkle</code> in which I denoted that the rotation should apply to the head of the table. The head and body of the table are stored separately in the <code>dust</code> object and all of the sprinkles may be applied to either part of the table.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(mtcars, <span class="dt">tidy_df =</span> <span class="ot">TRUE</span>) %&gt;%<span class="st"> </span>
@@ -1258,21 +1258,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">rotate_degree =</span> -<span class="dv">90</span>, 
            <span class="dt">height =</span> <span class="dv">60</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</code></pre></div>
-<p><table align = 'center' style = 'border-collapse:collapse;'>
+<table align = 'center' style = 'border-collapse:collapse;'>
 <tr>
-<th colspan = '1'; rowspan = '1'; style='text-align:left;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>column</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>n</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>mean</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>sd</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>median</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>trimmed</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>mad</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>min</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>max</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>range</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>skew</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>kurtosis</th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-moz-transform:rotate(%sdeg);deg);'>se</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>column</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>n</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>mean</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>sd</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>median</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>trimmed</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>mad</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>min</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>max</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>range</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>skew</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>kurtosis</th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>se</th>
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>mpg</td>
@@ -1439,7 +1439,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.26</td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.29</td>
 </tr>
-</table><br/><br/></p>
+</table></br></br>
 </div>
 <div id="references" class="section level1">
 <h1><span class="header-section-number">9</span> References</h1>

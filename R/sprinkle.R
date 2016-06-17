@@ -395,6 +395,25 @@
 #'  \tab markdown     \tab Recognized \cr
 #'  \tab html         \tab Recognized \cr
 #'  \tab latex        \tab Recognized \cr
+#' sanitize \tab  \tab  \cr
+#'  \tab action	      \tab Sanitizes character values that may cause \cr
+#'  \tab              \tab difficulties for the rendered format.  \cr
+#'  \tab default	    \tab FALSE      \cr
+#'  \tab accepts	    \tab logical(1) \cr
+#'  \tab console	    \tab Not recognized \cr
+#'  \tab markdown	    \tab Not recognized \cr
+#'  \tab html         \tab Not recognized \cr
+#'  \tab latex	      \tab Recognized.  Sanitization is performed using \cr
+#'  \tab              \tab \code{\link[Hmisc]{latexTranslate}} \cr
+#' sanitize_args	\tab \tab \cr
+#'  \tab action	      \tab Passes additional arguments to \code{\link[Hmisc]{latexTranslate}} \cr
+#'  \tab default	    \tab \code{list()} \cr
+#'  \tab accepts	    \tab list.  See documentation for \code{\link[Hmisc]{latexTranslate}} \cr
+#'  \tab              \tab for details \cr
+#'  \tab console	    \tab Not recognized \cr
+#'  \tab markdown	    \tab Not recognized \cr
+#'  \tab html	        \tab Not recognized \cr
+#'  \tab latex	      \tab Recognized \cr
 #' tabcolsep \tab  \tab  \cr
 #'  \tab action       \tab Modifies the LaTeX `tabcolsep` parameter of tables \cr
 #'  \tab              \tab This is similar to `pad` for HTML tables, but only  \cr
@@ -693,12 +712,19 @@ sprinkle.default <- function(x, rows = NULL, cols = NULL, ...,
   }
   
   #* Convert colors to rgb
-  if (any(!vapply(sprinkles[c("bg", "border_color", "font_color")], 
-                  is.null, 
-                  logical(1))))
+  given_color_sprinkles <- 
+      !vapply(sprinkles[c("bg", "border_color", "font_color")], 
+              is.null, 
+              logical(1))
+  given_color_sprinkles <- 
+    c("bg", "border_color", "font_color")[given_color_sprinkles]
+
+    
+  if (length(given_color_sprinkles))
   {
-    color_sprinkles(sprinkles = sprinkles[c("bg", "border_color", "font_color")],
-                    coll = coll)
+    sprinkles[given_color_sprinkles] <- 
+      color_sprinkles(sprinkles = sprinkles[given_color_sprinkles],
+                      coll = coll)
   }
 
   #* Return any errors found.
@@ -711,6 +737,14 @@ sprinkle.default <- function(x, rows = NULL, cols = NULL, ...,
   
   x <- option_sprinkles(x = x, 
                         sprinkles = sprinkles)
+  
+  #* Special care for the `sanitize_args` sprinkle
+  if ("sanitize_args" %in% names(sprinkles))
+  {
+    sprinkles[["sanitize_args"]] <- 
+      deparse(sprinkles[["sanitize_args"]]) %>%
+      paste0(collapse = "")
+  }
   
   #* Sprinkles in the `simple` group.
   #* These sprinkles do not associate with any other sprinkles and may be
@@ -794,13 +828,13 @@ sprinkle.default <- function(x, rows = NULL, cols = NULL, ...,
                          width_units = sprinkles[["width_units"]])
   }
   
-  #* Move replacement sprinkle into `value`
-  if ("replace" %in% names(x[[part]]))
-  {
-    to_replace <- !is.na(x[[part]][["replace"]])
-    x[[part]][["value"]][to_replace] <- x[[part]][["replace"]][to_replace]
-    x[["replace"]] <- NULL
-  }
+  # #* Move replacement sprinkle into `value`
+  # if ("replace" %in% names(x[[part]]))
+  # {
+  #   to_replace <- !is.na(x[[part]][["replace"]])
+  #   x[[part]][["value"]][to_replace] <- x[[part]][["replace"]][to_replace]
+  #   x[["replace"]] <- NULL
+  # }
   
   #* Restore original sorting
   x[[part]] <- dplyr::arrange(x[[part]], col, row)
@@ -881,14 +915,12 @@ simple_sprinkles <- function(x, sprinkles, part, indices)
 
   for (spr in names(sprinkles)[which_simple])
   {
-    if (spr == "fn") 
-    {
-      x[[part]][[spr]][indices] <- deparse(sprinkles[[spr]])
-    }
-    else
-    {
-      x[[part]][[spr]][indices] <- sprinkles[[spr]]
-    }
+    x[[part]][[spr]][indices] <- 
+      switch(spr,
+             "fn" = deparse(sprinkles[[spr]]),
+             "pad" = format(sprinkles[[spr]], scientific = FALSE),
+             "rotate_degree" = format(sprinkles[[spr]], scientific = FALSE),
+             sprinkles[[spr]])
   }
   
   x
@@ -992,7 +1024,7 @@ font_size_sprinkles <- function(x, part, indices,
   if (is.null(font_size)) font_size <- ""
   if (is.null(font_size_units)) font_size_units <- "pt"
 
-  x[[part]][["font_size"]][indices] <- font_size
+  x[[part]][["font_size"]][indices] <- format(font_size, scientific = FALSE)
   x[[part]][["font_size_units"]][indices] <- font_size_units
   
   x
@@ -1012,7 +1044,7 @@ height_sprinkles <- function(x, part, indices,
   if (is.null(height)) height = ""
   if (is.null(height_units)) height_units <- "pt"
   
-  x[[part]][["height"]][indices] <- height
+  x[[part]][["height"]][indices] <- format(height, scientific = FALSE)
   x[[part]][["height_units"]][indices] <- height_units
   
   x
@@ -1050,29 +1082,32 @@ merge_sprinkles <- function(x, part, indices,
   if (is.null(merge_colval)) merge_colval <- min(x[[part]][["col"]][indices])
   
   #* Map the cells to the display cell
-  x[[part]][["html_row"]][indices] <- merge_rowval
-  x[[part]][["html_col"]][indices] <- merge_colval
+  x[[part]][["html_row"]][indices] <- as.integer(merge_rowval)
+  x[[part]][["html_col"]][indices] <- as.integer(merge_colval)
   
   #* Set colspan and rowspan of non-display cells to 0.  This suppresses 
   #* them from display.
-  x[[part]][["rowspan"]][indices] [x[[part]][["row"]][indices] != merge_rowval] <- 0
-  x[[part]][["colspan"]][indices] [x[[part]][["col"]][indices] != merge_colval] <- 0
+  x[[part]][["rowspan"]][indices] [x[[part]][["row"]][indices] != merge_rowval] <- 0L
+  x[[part]][["colspan"]][indices] [x[[part]][["col"]][indices] != merge_colval] <- 0L
   
   #* Record the upper left most cell of the merged area.
   #* This will be needed for HTML table to place the cell in the correct
   #* location.
-  x[[part]][["html_row_pos"]][indices] <- min(x[[part]][["row"]][indices])
-  x[[part]][["html_col_pos"]][indices] <- min(x[[part]][["col"]][indices])
+  x[[part]][["html_row_pos"]][indices] <- as.integer(min(x[[part]][["row"]][indices]))
+  x[[part]][["html_col_pos"]][indices] <- as.integer(min(x[[part]][["col"]][indices]))
   
   #* Set the colspan and rowspan of the display cells.
   x[[part]][["rowspan"]][indices] [x[[part]][["row"]][indices] == merge_rowval] <- 
     x[[part]][["row"]][indices] %>%
     unique() %>%
-    length()
+    length() %>%
+    as.integer()
+  
   x[[part]][["colspan"]][indices] [x[[part]][["col"]][indices] == merge_colval] <- 
     x[[part]][["col"]][indices] %>%
     unique() %>%
-    length()
+    length() %>%
+    as.integer()
   
   x
 }
@@ -1087,7 +1122,7 @@ width_sprinkles <- function(x, part, indices,
   if (is.null(width)) width = ""
   if (is.null(width_units)) width_units <- "pt"
   
-  x[[part]][["width"]][indices] <- width
+  x[[part]][["width"]][indices] <- format(width, scientific = FALSE)
   x[[part]][["width_units"]][indices] <- width_units
   
   x
@@ -1098,12 +1133,22 @@ width_sprinkles <- function(x, part, indices,
 
 color_sprinkles <- function(sprinkles, coll)
 {
-  sprinkles <- sprinkles[!vapply(sprinkles, is.null, logical(1))]
+
+  sprinkles <- 
+    lapply(sprinkles,
+           function(x)
+           {
+             x <- gsub("[[:space:]]", "", x)
+             x[x == "transparent"] <- "rgba(255,255,255,0.0)"
+             x
+           }
+    )
   for (i in seq_along(sprinkles))
   {
     is_color <- tolower(sprinkles[[i]]) %in% tolower(grDevices::colors())
     is_rgb <- grepl("^rgb[(]\\d{1,3},\\d{1,3},\\d{1,3}[)]",sprinkles[[i]]) | 
-              grepl("^rgba[(]\\d{1,3},\\d{1,3},\\d{1,3},(\\d{1,4}|)[.]\\d{1,9}[)]$", sprinkles[[i]]) 
+              grepl("^rgba[(]\\d{1,3},\\d{1,3},\\d{1,3},(\\d{1,4}|)[.]\\d{1,9}[)]$", sprinkles[[i]])  | 
+              grepl("^rgba[(]\\d{1,3},\\d{1,3},\\d{1,3},0[)]$", sprinkles[[i]])
     is_hex <- grepl("^#[0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f]$", sprinkles[[i]]) | 
               grepl("^#[0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f][0-9,A-F,a-f]$", sprinkles[[i]])
     
