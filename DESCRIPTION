@@ -1,6 +1,6 @@
 Package: pixiedust
 Title: Tables so Beautifully Fine-Tuned You Will Believe It's Magic
-Version: 0.7.5
+Version: 0.8.0
 Authors@R: person("Benjamin", "Nutter", email = "nutter@battelle.org", role = c("aut", "cre"))
 Description: The introduction of the 'broom' package has made converting model
     objects into data frames as simple as a single function. While the 'broom'
@@ -12,8 +12,8 @@ Description: The introduction of the 'broom' package has made converting model
     printing to the console and to the common markdown formats (markdown, HTML, and
     LaTeX). With a little 'pixiedust' (and happy thoughts) tables can really fly.
 Depends: R (>= 3.2.1)
-Imports: broom, checkmate, dplyr, Hmisc (>= 3.14-6), htmltools, knitr,
-        lazyWeave, magrittr, stringr, tidyr
+Imports: broom, checkmate (>= 1.8.0), dplyr, Hmisc (>= 3.14-6),
+        htmltools, knitr, magrittr, scales, stringr, tidyr
 Suggests: rmarkdown, testthat
 License: MIT + file LICENSE
 LazyData: true
@@ -24,6 +24,6 @@ RoxygenNote: 5.0.1
 NeedsCompilation: no
 Author: Benjamin Nutter [aut, cre]
 Maintainer: Benjamin Nutter <nutter@battelle.org>
-Packaged: 2017-05-06 13:13:49 UTC; Nutter
+Packaged: 2017-08-25 15:58:19 UTC; Nutter
 Repository: CRAN
-Date/Publication: 2017-05-07 14:22:27 UTC
+Date/Publication: 2017-08-26 06:11:39 UTC
