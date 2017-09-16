@@ -1,7 +1,8 @@
 Package: pixiedust
 Title: Tables so Beautifully Fine-Tuned You Will Believe It's Magic
-Version: 0.8.0
-Authors@R: person("Benjamin", "Nutter", email = "nutter@battelle.org", role = c("aut", "cre"))
+Version: 0.8.1
+Authors@R: c(person("Benjamin", "Nutter", email = "nutter@battelle.org", role = c("aut", "cre")),
+             person("David", "Kretch", role = c("ctb")))
 Description: The introduction of the 'broom' package has made converting model
     objects into data frames as simple as a single function. While the 'broom'
     package focuses on providing tidy data frames that can be used in advanced
@@ -11,7 +12,7 @@ Description: The introduction of the 'broom' package has made converting model
     with fine tuned control over each cell of the table. Options for output include
     printing to the console and to the common markdown formats (markdown, HTML, and
     LaTeX). With a little 'pixiedust' (and happy thoughts) tables can really fly.
-Depends: R (>= 3.2.1)
+Depends: R (>= 3.1.2)
 Imports: broom, checkmate (>= 1.8.0), dplyr, Hmisc (>= 3.14-6),
         htmltools, knitr, magrittr, scales, stringr, tidyr
 Suggests: rmarkdown, testthat
@@ -22,8 +23,9 @@ URL: https://github.com/nutterb/pixiedust
 BugReports: https://github.com/nutterb/pixiedust/issues
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Author: Benjamin Nutter [aut, cre]
+Packaged: 2017-09-16 01:53:15 UTC; Nutter
+Author: Benjamin Nutter [aut, cre],
+  David Kretch [ctb]
 Maintainer: Benjamin Nutter <nutter@battelle.org>
-Packaged: 2017-08-25 15:58:19 UTC; Nutter
 Repository: CRAN
-Date/Publication: 2017-08-26 06:11:39 UTC
+Date/Publication: 2017-09-16 05:13:05 UTC
