@@ -16,7 +16,7 @@
 #'   data frame (or tidied output from \code{broom::tidy} 
 #'   originally given to \code{dust}.
 #' 
-#' @details In its current state, this can be a fairly ineffcient function
+#' @details In its current state, this can be a fairly inefficient function
 #'   as the table, if the longtable option is in use, will be built in 
 #'   a \code{for} loop and bound together using \code{rbind}.  This isn't 
 #'   really intended for large tables, but may be of assistance when 
@@ -78,6 +78,7 @@ as.data.frame.dust <- function(x, ..., sprinkled = TRUE)
     col_names <- dplyr::group_by(x$body, col) %>%
       dplyr::summarise(col_name = col_name[1])
     col_names <- col_names$col_name
+    names(X) <- col_names
     
     classes <- dplyr::group_by(x$body, col) %>%
       dplyr::summarise(col_class = col_class[1])
@@ -86,8 +87,6 @@ as.data.frame.dust <- function(x, ..., sprinkled = TRUE)
     for (i in seq_along(X)){
       X[[i]] <- get(classes[i])(X[[i]])
     }
-    
-    names(X) <- col_names
     
     X
   }
@@ -106,6 +105,3 @@ as.data.frame.dust_list <- function(x, ...)
          as.data.frame.dust,
          ...)
 }
-
-
-utils::globalVariables(c("value", "col_name", "col_class"))

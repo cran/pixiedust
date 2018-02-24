@@ -3,18 +3,20 @@ library(dplyr)
 library(pixiedust)
 
 mtcars2 <- mtcars[1:10, ]
-
-Hmisc::label(mtcars2$mpg) <- "Gas Mileage"
-Hmisc::label(mtcars2$cyl) <- "Cylinders"
-Hmisc::label(mtcars2$disp) <- "Displacement"
-Hmisc::label(mtcars2$hp) <- "Horse Power"
-Hmisc::label(mtcars2$drat) <- "Rear Axle Ratio"
-Hmisc::label(mtcars2$wt) <- "Weight"
-Hmisc::label(mtcars2$qsec) <- "1/4 mile time"
-Hmisc::label(mtcars2$vs) <- "V/S"
-Hmisc::label(mtcars2$am) <- "Transmission"
-Hmisc::label(mtcars2$gear) <- "Forward Gears"
-Hmisc::label(mtcars2$carb) <- "Carburetors"
+mtcars2 <- 
+  labelVector::set_label(
+    mtcars2,
+    mpg = "Gas Mileage",
+    cyl = "Cylinders",
+    disp = "Displacement",
+    hp = "Horse Power",
+    drat = "Rear Axle Ratio",
+    wt = "Weight",
+    qsec = "1/4 mile time",
+    vs = "V/S",
+    am = "Transmission",
+    gear = "Forward Gears",
+    carb = "Carburetors")
 
 ## ---- echo=FALSE---------------------------------------------------------
 mtcars <- mutate(mtcars,
@@ -22,22 +24,27 @@ mtcars <- mutate(mtcars,
                  cyl = factor(cyl),
                  gear = factor(gear))
 
-Hmisc::label(mtcars$mpg) <- "Gas Mileage"
-Hmisc::label(mtcars$cyl) <- "Cylinders"
-Hmisc::label(mtcars$disp) <- "Displacement"
-Hmisc::label(mtcars$hp) <- "Horse Power"
-Hmisc::label(mtcars$drat) <- "Rear Axle Ratio"
-Hmisc::label(mtcars$wt) <- "Weight"
-Hmisc::label(mtcars$qsec) <- "1/4 mile time"
-Hmisc::label(mtcars$vs) <- "V/S"
-Hmisc::label(mtcars$am) <- "Transmission"
-Hmisc::label(mtcars$gear) <- "Forward Gears"
-Hmisc::label(mtcars$carb) <- "Carburetors"
+mtcars <-
+  labelVector::set_label(
+    mtcars,
+    mpg = "Gas Mileage",
+    cyl = "Cylinders",
+    disp = "Displacement",
+    hp = "Horse Power",
+    drat = "Rear Axle Ratio",
+    wt = "Weight",
+    qsec = "1/4 mile time",
+    vs = "V/S",
+    am = "Transmission",
+    gear = "Forward Gears",
+    carb = "Carburetors")
 
 fit <- lm(mpg ~ am + wt + qsec + gear, data = mtcars)
 
 ## ------------------------------------------------------------------------
-custom_head <- rbind(names(mtcars2), Hmisc::label(mtcars2)) %>%
+custom_head <- rbind(names(mtcars2), 
+                     labelVector::get_label(mtcars2,
+                                            names(mtcars2))) %>%
   as.data.frame(stringsAsFactors = FALSE)
 
 custom_foot <- rbind(vapply(mtcars2, mean, numeric(1)),
@@ -134,7 +141,9 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle_print_method("html")
 
 ## ------------------------------------------------------------------------
-custom_head <- rbind(names(mtcars2), Hmisc::label(mtcars2)) %>%
+custom_head <- rbind(names(mtcars2), 
+                     labelVector::get_label(mtcars2,
+                                            names(mtcars2))) %>%
   as.data.frame(stringsAsFactors = FALSE)
 
 custom_foot <- rbind(vapply(mtcars2, mean, numeric(1)),
@@ -231,7 +240,9 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle_print_method("console")
 
 ## ------------------------------------------------------------------------
-custom_head <- rbind(names(mtcars2), Hmisc::label(mtcars2)) %>%
+custom_head <- rbind(names(mtcars2), 
+                     labelVector::get_label(mtcars2,
+                                            names(mtcars2))) %>%
   as.data.frame(stringsAsFactors = FALSE)
 
 custom_foot <- rbind(vapply(mtcars2, mean, numeric(1)),

@@ -4,7 +4,7 @@ library(dplyr)
 ## ---- echo=FALSE---------------------------------------------------------
 Sprinkles <- read.csv(system.file("sprinkles.csv", package = "pixiedust"),
                         stringsAsFactors=FALSE)
-Sprinkles[,-1] <- lapply(Sprinkles[-1], stringr::str_trim)
+Sprinkles[,-1] <- lapply(Sprinkles[-1], trimws)
 
 ## ---- echo=FALSE---------------------------------------------------------
 library(pixiedust)
