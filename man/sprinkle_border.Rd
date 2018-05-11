@@ -121,6 +121,14 @@ it is silently ignored.
  \item Casts an error if \code{fixed} is not a \code{logical(1)}
  \item Casts an error if \code{recycle} is not one of \code{"none"},
    \code{"rows"}, or \code{"cols"}
+ \item Cast an error if \code{recycle = "none"} and \code{border_color}
+   does not have length 1.
+ \item Cast an error if \code{recycle = "none"} and \code{border_style}
+   does not have length 1.
+ \item Cast an error if \code{recycle = "none"} and \code{border_thickness}
+   does not have length 1.
+ \item Quietly restrict \code{border_units} to just the first element if
+   is has length > 1 and \code{recycle = "none"}.
 }
 }
 

@@ -725,14 +725,17 @@ sprinkle.default <- function(x, rows = NULL, cols = NULL, ...,
                                part = part,
                                recycle = recycle,
                                coll = coll)
+  
+  recycle <- recycle[1]
 
   for (i in seq_along(sprinkle_groups))
   {
     if (any(sprinkle_groups[[i]] %in% names(sprinkles)))
     {
-      sprinkle_arg <- sprinkles[sprinkle_groups[[i]]]
+      sprinkle_arg <- c(sprinkles[sprinkle_groups[[i]]], "recycle" = recycle)
+      sprinkle_arg <- sprinkle_arg[names(sprinkle_arg) %in% sprinkle_groups[[i]]]
       sprinkle_arg <- sprinkle_arg[!vapply(sprinkle_arg, is.null, logical(1))]
-      
+     
       if (!"fn" %in% names(sprinkle_arg))
       {
         args_list <- 
@@ -745,7 +748,7 @@ sprinkle.default <- function(x, rows = NULL, cols = NULL, ...,
           {
             list(coll = coll)
           }
-        
+
         do.call(what = sprintf("sprinkle_%s_index_assert",
                                names(sprinkle_groups)[[i]]),
                 args = c(sprinkle_arg,
@@ -820,12 +823,12 @@ sprinkle.dust_list <- function(x, rows = NULL, cols = NULL, ...,
 
 sprinkle_groups <-  
   list(
-    align = c("halign", "valign"),
-    bg = "bg",
+    align = c("halign", "valign", "recycle"),
+    bg = c("bg", "recycle"),
     bg_pattern = c("bg_pattern", "bg_pattern_by"),
     bookdown = "bookdown",
     border = c("border", "border_color", "border_style", 
-               "border_thickness", "border_units"),
+               "border_thickness", "border_units", "recycle"),
     border_collapse = "border_collapse",
     caption = "caption", 
     caption_number = "caption_number",
@@ -838,23 +841,23 @@ sprinkle_groups <-
                      "fixed_header_text_height", "fixed_header_text_height_units",
                      "fixed_header_background_color"),
     float = "float",
-    fn = "fn",
+    fn = c("fn"),
     font = c("bold", "italic", "font_size", "font_size_units",
-             "font_color", "font_family"),
+             "font_color", "font_family", "recycle"),
     gradient = c("gradient", "gradient_colors", "gradient_cut",
                  "gradient_n", "gradient_na"),
-    height = c("height", "height_units"),
+    height = c("height", "height_units", "recycle"),
     hhline = "hhline",
     justify = "justify",
     label = "label",
     longtable = "longtable",
     merge = c("merge", "merge_rowval", "merge_colval"),
-    na_string = "na_string",
-    pad = "pad",
+    na_string = c("na_string", "recycle"),
+    pad = c("pad", "recycle"),
     replace = "replace",
-    rotate_degree = "rotate_degree",
-    round = "round",
+    rotate_degree = c("rotate_degree"),#, "recycle"),
+    round = c("round"),#, "recycle"),
     sanitize = c("sanitize", "sanitize_args"),
     tabcolsep = "tabcolsep",
-    width = c("width", "width_units")
+    width = c("width", "width_units", "recycle")
   )
