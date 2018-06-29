@@ -152,11 +152,12 @@ basetable %>%
   sprinkle(rows = 3, cols = 4, halign = "right", valign = "bottom", height = 50, width = 50)
 
 ## ------------------------------------------------------------------------
-dust(mtcars, tidy_df = TRUE) %>% 
-  sprinkle(cols = c("mean", "sd", "median", "trimmed", "mad", 
-                    "min", "max", "range", "skew", "kurtosis", "se"),
-           round = 2) %>% 
-  sprinkle(rows = 1, rotate_degree = -90, 
-           height = 60, part = "head") %>% 
+dust(Formaldehyde) %>%
+  sprinkle(cols = c("mpg", "disp", "drat", "qsec"),
+           round = 2) %>%
+  sprinkle(rows = 1,
+           rotate_degree = -90,
+           height = 60,
+           part = "head") %>%
   sprinkle_print_method("html")
 

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Benjamin Nutter" />
 
-<meta name="date" content="2018-05-11" />
+<meta name="date" content="2018-06-29" />
 
 <title>Creating Magic with pixiedust</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Creating Magic with <code>pixiedust</code></h1>
 <h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2018-05-11</em></h4>
+<h4 class="date"><em>2018-06-29</em></h4>
 
 
 <div id="TOC">
@@ -117,13 +117,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## F-statistic: 29.43 on 5 and 26 DF,  p-value: 6.379e-10</code></pre>
 <p>When <code>broom</code> was released, many undoubtedly recognized the potential to use the tidy output as executive summaries of the analyses. Surely, the output below is much more consumable for the lay audience than the output above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">broom<span class="op">::</span><span class="kw">tidy</span>(fit)</code></pre></div>
-<pre><code>##               term   estimate std.error  statistic      p.value
-## 1      (Intercept)  9.3650443 8.3730161  1.1184792 2.735903e-01
-## 2             qsec  1.2449212 0.3828479  3.2517387 3.168128e-03
-## 3 factor(am)Manual  3.1505178 1.9405171  1.6235455 1.165367e-01
-## 4               wt -3.9263022 0.7427562 -5.2861251 1.581735e-05
-## 5    factor(gear)4 -0.2681630 1.6554617 -0.1619868 8.725685e-01
-## 6    factor(gear)5 -0.2697468 2.0631829 -0.1307430 8.969850e-01</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   term             estimate std.error statistic   p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)         9.37      8.37      1.12  0.274    
+## 2 qsec                1.24      0.383     3.25  0.00317  
+## 3 factor(am)Manual    3.15      1.94      1.62  0.117    
+## 4 wt                 -3.93      0.743    -5.29  0.0000158
+## 5 factor(gear)4      -0.268     1.66     -0.162 0.873    
+## 6 factor(gear)5      -0.270     2.06     -0.131 0.897</code></pre>
 <p>Thanks to <code>broom</code>, the hardest part of generating the tabular output is already accomplished. However, there are still a few details to be dealt with, even with the tidy output. For instance, the numeric values have too many decimal places; the column names could be spruced up a little; and we may want to direct readers’ attention to certain parts of the table that are of particular interest. Adding <code>pixiedust</code> makes these customizations easier and uses the familiar strategy of <code>ggplot2</code> where each new customization is added on top of the others.</p>
 <p>The process of building these tables involves an initial dusting with the <code>dust</code> function, and then the addition of “sprinkles” to fine tune rows, columns, or even individual cells. The initial dusting creates a presentation very similar to the <code>broom</code> output.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pixiedust)
@@ -1248,195 +1250,44 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>0.9 </td>
 </tr>
 </table></br></br> # Rotating Text</p>
-<p>There is a sprinkle available to rotate the text in a cell. I don’t recommend using it. Rotated text is harder to read, and communicating concepts is the whole point of the table. However, sometimes it might be necessary. For our example, we’ll take the summary of the <code>mtcars</code> data set as returned by <code>broom</code>.</p>
+<p>There is a sprinkle available to rotate the text in a cell. I don’t recommend using it. Rotated text is harder to read, and communicating concepts is the whole point of the table. However, sometimes it might be necessary. For our example, we’ll use the first few rows of the <code>mtcars</code> data set.</p>
 <p>Notice here that when I apply the rotation, I added an argument to <code>sprinkle</code> in which I denoted that the rotation should apply to the head of the table. The head and body of the table are stored separately in the <code>dust</code> object and all of the sprinkles may be applied to either part of the table.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(mtcars, <span class="dt">tidy_df =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;trimmed&quot;</span>, <span class="st">&quot;mad&quot;</span>, 
-                    <span class="st">&quot;min&quot;</span>, <span class="st">&quot;max&quot;</span>, <span class="st">&quot;range&quot;</span>, <span class="st">&quot;skew&quot;</span>, <span class="st">&quot;kurtosis&quot;</span>, <span class="st">&quot;se&quot;</span>),
-           <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">rotate_degree =</span> <span class="op">-</span><span class="dv">90</span>, 
-           <span class="dt">height =</span> <span class="dv">60</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dust</span>(Formaldehyde) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;disp&quot;</span>, <span class="st">&quot;drat&quot;</span>, <span class="st">&quot;qsec&quot;</span>),
+           <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>,
+           <span class="dt">rotate_degree =</span> <span class="op">-</span><span class="dv">90</span>,
+           <span class="dt">height =</span> <span class="dv">60</span>,
+           <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
-<th colspan = '1'; rowspan = '1'; style='text-align:left;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>column </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>n </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>mean </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>sd </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>median </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>trimmed </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>mad </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>min </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>max </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>range </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>skew </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>kurtosis </th>
-<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>se </th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>carb </th>
+<th colspan = '1'; rowspan = '1'; style='text-align:right;height:60;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);'>optden </th>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>mpg </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>20.09 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>6.03 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>19.2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>19.7 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>5.41 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>10.4 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>33.9 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>23.5 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.61 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.37 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.07 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.1 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.086 </td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>cyl* </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2.09 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.89 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2.12 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.48 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.17 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-1.76 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.16 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.3 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.269 </td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>disp </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>230.72 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>123.94 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>196.3 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>222.52 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>140.48 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>71.1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>472 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>400.9 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.38 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-1.21 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>21.91 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.5 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.446 </td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>hp </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>146.69 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>68.56 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>123 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>141.19 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>77.1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>52 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>335 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>283 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.73 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.14 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>12.12 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.6 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.538 </td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>drat </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.6 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.53 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.69 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.58 </td>
 <td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.7 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2.76 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>4.93 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2.17 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.27 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.71 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.09 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.626 </td>
 </tr>
 <tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>wt </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.22 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.98 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.33 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.15 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.77 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.51 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>5.42 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3.91 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.42 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-0.02 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.17 </td>
-</tr>
-<tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>qsec </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>17.85 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.79 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>17.71 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>17.83 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.42 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>14.5 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>22.9 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>8.4 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.37 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.34 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.32 </td>
-</tr>
-<tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>vs </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.44 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.5 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.42 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.24 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.09 </td>
-</tr>
-<tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>am* </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.41 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.5 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.38 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.36 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-1.92 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.09 </td>
-</tr>
-<tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>gear* </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.69 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.74 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.62 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.48 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>3 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.53 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>-1.07 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.13 </td>
-</tr>
-<tr>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'>carb </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2.81 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.62 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>2.65 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.48 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>8 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>7 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.05 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>1.26 </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.29 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.9 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>0.782 </td>
 </tr>
 </table></br></br>
 </div>
