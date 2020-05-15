@@ -1,7 +1,7 @@
 .onAttach <- function(libname,pkgname)
 {
   packageStartupMessage("Additional documentation is being constructed at ",
-                        "http://nutterb.github.io/pixiedust/index.html")
+                        "https://suchanutter.net/pixiedust/index.html")
 }
 
 .onLoad <- function(libname,pkgname)

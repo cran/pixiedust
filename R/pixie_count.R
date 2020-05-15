@@ -25,7 +25,7 @@
 #' @source 
 #' The concept for these functions is loosely based on a hook meant to work with 
 #' \code{knitr} to automatically number tables. 
-#' http://stackoverflow.com/a/18672268/1017276
+#' https://stackoverflow.com/a/18672268/1017276
 #'   
 #' @export
 

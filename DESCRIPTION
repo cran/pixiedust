@@ -1,6 +1,6 @@
 Package: pixiedust
 Title: Tables so Beautifully Fine-Tuned You Will Believe It's Magic
-Version: 0.8.6
+Version: 0.9.0
 Authors@R: c(person("Benjamin", "Nutter", email = "benjamin.nutter@gmail.com", role = c("aut", "cre")),
              person("David", "Kretch", role = c("ctb")))
 Description: The introduction of the 'broom' package has made converting model
@@ -13,19 +13,19 @@ Description: The introduction of the 'broom' package has made converting model
     printing to the console and to the common markdown formats (markdown, HTML, and
     LaTeX). With a little 'pixiedust' (and happy thoughts) tables can really fly.
 Depends: R (>= 3.1.2)
-Imports: broom, checkmate (>= 1.8.0), dplyr, htmltools, knitr,
-        labelVector, magrittr, scales, tidyr
-Suggests: rmarkdown, testthat
+Imports: broom, checkmate (>= 1.8.0), htmltools, knitr, labelVector,
+        magrittr, reshape2, scales
+Suggests: dplyr, rmarkdown, testthat
 License: GPL (>= 2)
 LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/nutterb/pixiedust
 BugReports: https://github.com/nutterb/pixiedust/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 NeedsCompilation: no
-Packaged: 2019-01-11 16:16:46 UTC; benjamin
+Packaged: 2020-05-15 01:20:27 UTC; benjamin
 Author: Benjamin Nutter [aut, cre],
   David Kretch [ctb]
 Maintainer: Benjamin Nutter <benjamin.nutter@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-01-11 16:40:03 UTC
+Date/Publication: 2020-05-15 05:50:10 UTC

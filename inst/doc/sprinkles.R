@@ -1,12 +1,12 @@
-## ---- echo = FALSE, warning = FALSE, message = FALSE---------------------
+## ---- echo = FALSE, warning = FALSE, message = FALSE--------------------------
 library(dplyr)
 
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------
 Sprinkles <- read.csv(system.file("sprinkles.csv", package = "pixiedust"),
                         stringsAsFactors=FALSE)
 Sprinkles[,-1] <- lapply(Sprinkles[-1], trimws)
 
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------
 library(pixiedust)
 red <- "#A50026"
 lightgreen <- "#A6DBA0"
@@ -27,7 +27,7 @@ dust(Sprinkles[, -2],
   sprinkle_table(pad = 3) 
 
 
-## ---- echo = FALSE-------------------------------------------------------
+## ---- echo = FALSE------------------------------------------------------------
 SprinkleDocs <- 
   read.csv(system.file("sprinkle_documentation.csv", package = "pixiedust"),
                         stringsAsFactors=FALSE,

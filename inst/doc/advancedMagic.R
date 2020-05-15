@@ -1,4 +1,4 @@
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(dplyr)
 library(pixiedust)
 
@@ -18,7 +18,7 @@ mtcars2 <-
     gear = "Forward Gears",
     carb = "Carburetors")
 
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------
 mtcars <- mutate(mtcars,
                  am = factor(am, 0:1, c("Automatic", "Manual")),
                  cyl = factor(cyl),
@@ -41,7 +41,7 @@ mtcars <-
 
 fit <- lm(mpg ~ am + wt + qsec + gear, data = mtcars)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 custom_head <- rbind(names(mtcars2), 
                      labelVector::get_label(mtcars2,
                                             names(mtcars2))) %>%
@@ -51,7 +51,7 @@ custom_foot <- rbind(vapply(mtcars2, mean, numeric(1)),
                      vapply(mtcars2, sd, numeric(1))) %>%
   as.data.frame(stringsAsFactors = FALSE)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dust(mtcars2) %>%
   redust(custom_head, part = "head") %>%
   redust(custom_foot, part = "foot") %>%
@@ -60,7 +60,7 @@ dust(mtcars2) %>%
   sprinkle(bg = "lightgray", part = "foot") %>%
   sprinkle_print_method("html")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 custom_interfoot <- data.frame("To Be Continued", 
                                "", "", "", "", "", "",
                                "", "", "", "")
@@ -75,18 +75,18 @@ custom_interfoot <- data.frame("To Be Continued",
   sprinkle(bg = "lightgray", part = "interfoot") %>%
   sprinkle_print_method("html"))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 x %>%
   sprinkle(merge = TRUE, halign = "center", part = "interfoot")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 x %>%
   sprinkle(merge = TRUE, halign = "center", part = "interfoot") %>%
   sprinkle(rows = 1:3, cols = 2:4,
            merge = TRUE, merge_rowval = 2, merge_colval = 3,
            halign = "center")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + factor(am) + wt + factor(gear), 
           data = mtcars)
 
@@ -95,13 +95,13 @@ dust(fit, descriptors = c("label", "level")) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("html")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dust(fit, descriptors = c("label", "level_detail")) %>%
   sprinkle(cols = 3:5, round = 2) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("html")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear + factor(vs), 
           data = mtcars)
 
@@ -110,7 +110,7 @@ dust(fit, descriptors = c("label", "level_detail")) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("html")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear, 
           data = mtcars)
 
@@ -124,7 +124,7 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle(rows = 1, border = "top", part = "foot") %>%
   sprinkle_print_method("html")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear, 
           data = mtcars)
 
@@ -140,7 +140,7 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle(rows = 1, border = "top", part = "foot") %>%
   sprinkle_print_method("html")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 custom_head <- rbind(names(mtcars2), 
                      labelVector::get_label(mtcars2,
                                             names(mtcars2))) %>%
@@ -150,7 +150,7 @@ custom_foot <- rbind(vapply(mtcars2, mean, numeric(1)),
                      vapply(mtcars2, sd, numeric(1))) %>%
   as.data.frame(stringsAsFactors = FALSE)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dust(mtcars2) %>%
   redust(custom_head, part = "head") %>%
   redust(custom_foot, part = "foot") %>%
@@ -159,7 +159,7 @@ dust(mtcars2) %>%
   sprinkle(bg = "lightgray", part = "foot") %>%
   sprinkle_print_method("console")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 custom_interfoot <- data.frame("To Be Continued", 
                                "", "", "", "", "", "",
                                "", "", "", "")
@@ -174,18 +174,18 @@ custom_interfoot <- data.frame("To Be Continued",
   sprinkle(bg = "lightgray", part = "interfoot") %>%
   sprinkle_print_method("console"))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 x %>%
   sprinkle(merge = TRUE, halign = "center", part = "interfoot")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 x %>%
   sprinkle(merge = TRUE, halign = "center", part = "interfoot") %>%
   sprinkle(rows = 1:3, cols = 2:4,
            merge = TRUE, merge_rowval = 2, merge_colval = 3,
            halign = "center")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + factor(am) + wt + factor(gear), 
           data = mtcars)
 
@@ -194,13 +194,13 @@ dust(fit, descriptors = c("label", "level")) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("console")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dust(fit, descriptors = c("label", "level_detail")) %>%
   sprinkle(cols = 3:5, round = 2) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("console")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear + factor(vs), 
           data = mtcars)
 
@@ -209,7 +209,7 @@ dust(fit, descriptors = c("label", "level_detail")) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("console")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear, 
           data = mtcars)
 
@@ -223,7 +223,7 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle(rows = 1, border = "top", part = "foot") %>%
   sprinkle_print_method("console")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear, 
           data = mtcars)
 
@@ -239,7 +239,7 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle(rows = 1, border = "top", part = "foot") %>%
   sprinkle_print_method("console")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 custom_head <- rbind(names(mtcars2), 
                      labelVector::get_label(mtcars2,
                                             names(mtcars2))) %>%
@@ -249,7 +249,7 @@ custom_foot <- rbind(vapply(mtcars2, mean, numeric(1)),
                      vapply(mtcars2, sd, numeric(1))) %>%
   as.data.frame(stringsAsFactors = FALSE)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dust(mtcars2) %>%
   redust(custom_head, part = "head") %>%
   redust(custom_foot, part = "foot") %>%
@@ -258,7 +258,7 @@ dust(mtcars2) %>%
   sprinkle(bg = "lightgray", part = "foot") %>%
   sprinkle_print_method("markdown")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 custom_interfoot <- data.frame("To Be Continued", 
                                "", "", "", "", "", "",
                                "", "", "", "")
@@ -273,18 +273,18 @@ custom_interfoot <- data.frame("To Be Continued",
   sprinkle(bg = "lightgray", part = "interfoot") %>%
   sprinkle_print_method("markdown"))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 x %>%
   sprinkle(merge = TRUE, halign = "center", part = "interfoot")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 x %>%
   sprinkle(merge = TRUE, halign = "center", part = "interfoot") %>%
   sprinkle(rows = 1:3, cols = 2:4,
            merge = TRUE, merge_rowval = 2, merge_colval = 3,
            halign = "center")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + factor(am) + wt + factor(gear), 
           data = mtcars)
 
@@ -293,13 +293,13 @@ dust(fit, descriptors = c("label", "level")) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("markdown")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dust(fit, descriptors = c("label", "level_detail")) %>%
   sprinkle(cols = 3:5, round = 2) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("markdown")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear + factor(vs), 
           data = mtcars)
 
@@ -308,7 +308,7 @@ dust(fit, descriptors = c("label", "level_detail")) %>%
   sprinkle(cols = 6, fn = quote(pvalString(value))) %>%
   sprinkle_print_method("markdown")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear, 
           data = mtcars)
 
@@ -322,7 +322,7 @@ dust(fit, descriptors = c("label", "level_detail"),
   sprinkle(rows = 1, border = "top", part = "foot") %>%
   sprinkle_print_method("markdown")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fit <- lm(mpg ~ qsec + am + wt + gear, 
           data = mtcars)
 
