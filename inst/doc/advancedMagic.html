@@ -12,10 +12,19 @@
 
 <meta name="author" content="Benjamin Nutter" />
 
-<meta name="date" content="2020-05-15" />
+<meta name="date" content="2021-01-15" />
 
 <title>Advanced Magic with pixiedust</title>
 
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -37,7 +46,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -107,164 +116,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">
-body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#header {
-text-align: center;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } </style>
+<style type="text/css">body {background-color: #fff;margin: 1em auto;max-width: 700px;overflow: visible;padding-left: 2em;padding-right: 2em;font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 14px;line-height: 1.35;}#header {text-align: center;}#TOC {clear: both;margin: 0 0 10px 10px;padding: 4px;width: 400px;border: 1px solid #CCCCCC;border-radius: 5px;background-color: #f6f6f6;font-size: 13px;line-height: 1.3;}#TOC .toctitle {font-weight: bold;font-size: 15px;margin-left: 5px;}#TOC ul {padding-left: 40px;margin-left: -1.5em;margin-top: 5px;margin-bottom: 5px;}#TOC ul ul {margin-left: -2em;}#TOC li {line-height: 16px;}p {margin: 0.5em 0;}blockquote {background-color: #f6f6f6;padding: 0.25em 0.75em;}hr {border-style: solid;border: none;border-top: 1px solid #777;margin: 28px 0;}dl {margin-left: 0;}dl dd {margin-bottom: 13px;margin-left: 13px;}dl dt {font-weight: bold;}ul {margin-top: 0;}ul li {list-style: circle outside;}ul ul {margin-bottom: 0;}pre, code {background-color: #f7f7f7;border-radius: 3px;color: #333;white-space: pre-wrap; }pre {border-radius: 3px;margin: 5px 0px 10px 0px;padding: 10px;}pre:not([class]) {background-color: #f7f7f7;}code {font-family: Consolas, Monaco, 'Courier New', monospace;font-size: 85%;}p > code, li > code {padding: 2px 0px;}div.figure {text-align: center;}img {background-color: #FFFFFF;padding: 2px;border: 1px solid #DDDDDD;border-radius: 3px;border: 1px solid #CCCCCC;margin: 0 5px;}h1 {margin-top: 0;font-size: 35px;line-height: 40px;}h2 {border-bottom: 4px solid #f7f7f7;padding-top: 10px;padding-bottom: 2px;font-size: 145%;}h3 {border-bottom: 2px solid #f7f7f7;padding-top: 10px;font-size: 120%;}h4 {border-bottom: 1px solid #f7f7f7;margin-left: 8px;font-size: 105%;}h5, h6 {border-bottom: 1px solid #ccc;font-size: 105%;}a {color: #0033dd;text-decoration: none;}a:hover {color: #6666ff; }a:visited {color: #800080; }a:visited:hover {color: #BB00BB; }a[href^="http:"] {text-decoration: underline; }a[href^="https:"] {text-decoration: underline; }code > span.kw { color: #555; font-weight: bold; } code > span.dt { color: #902000; } code > span.dv { color: #40a070; } code > span.bn { color: #d14; } code > span.fl { color: #d14; } code > span.ch { color: #d14; } code > span.st { color: #d14; } code > span.co { color: #888888; font-style: italic; } code > span.ot { color: #007020; } code > span.al { color: #ff0000; font-weight: bold; } code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } </style>
 
 
 
@@ -278,7 +131,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Advanced Magic with <code>pixiedust</code></h1>
 <h4 class="author">Benjamin Nutter</h4>
-<h4 class="date">2020-05-15</h4>
+<h4 class="date">2021-01-15</h4>
 
 
 <div id="TOC">
@@ -307,54 +160,54 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>In addition to the basic cell-specific customizations covered in the “pixiedust” vignette (<code>vignette(&quot;pixiedust&quot;)</code>), <code>pixiedust</code> also supports some more advanced features for displaying tabular output. Specifically, you can add multi-row headers and footers; display your tables in multiple divisions; and create cells that span multiple columns and/or rows.</p>
 <p>The presentation of this vignette will be a hybrid of tutorial and testing environment. Due to the way that <code>pixiedust</code> generates output, it cannot be directly evaluated for accuracy (this may change some day, but not right now) and so the best way to see if it is doing what is expected is to generate the output. The primary tutorial aspect of this vignette will be covered in the HTML portions, with the Markdown and Console output being provided mostly to verify that the output is as expected.</p>
 <p>For parts of this vignette, we will work with the <code>mtcars</code> data frame. But first we make some additions to the data. For simplicity, we will only use the first ten rows of the data frame. Additionally, we will add labels to the variables using the <code>set_label</code> function from the <code>labelVector</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
 ## 
 ##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(pixiedust)</a></code></pre></div>
-<pre><code>## Additional documentation is being constructed at https://suchanutter.net/pixiedust/index.html</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">mtcars2 &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ]</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">mtcars2 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span>labelVector<span class="op">::</span><span class="kw">set_label</span>(</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">    mtcars2,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="dt">mpg =</span> <span class="st">&quot;Gas Mileage&quot;</span>,</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="dt">cyl =</span> <span class="st">&quot;Cylinders&quot;</span>,</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="dt">disp =</span> <span class="st">&quot;Displacement&quot;</span>,</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="dt">hp =</span> <span class="st">&quot;Horse Power&quot;</span>,</a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">    <span class="dt">drat =</span> <span class="st">&quot;Rear Axle Ratio&quot;</span>,</a>
-<a class="sourceLine" id="cb7-10" data-line-number="10">    <span class="dt">wt =</span> <span class="st">&quot;Weight&quot;</span>,</a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">    <span class="dt">qsec =</span> <span class="st">&quot;1/4 mile time&quot;</span>,</a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">    <span class="dt">vs =</span> <span class="st">&quot;V/S&quot;</span>,</a>
-<a class="sourceLine" id="cb7-13" data-line-number="13">    <span class="dt">am =</span> <span class="st">&quot;Transmission&quot;</span>,</a>
-<a class="sourceLine" id="cb7-14" data-line-number="14">    <span class="dt">gear =</span> <span class="st">&quot;Forward Gears&quot;</span>,</a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">    <span class="dt">carb =</span> <span class="st">&quot;Carburetors&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">library</span>(pixiedust)</a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3">mtcars2 &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ]</a>
+<a class="sourceLine" id="cb5-4" title="4">mtcars2 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span>labelVector<span class="op">::</span><span class="kw">set_label</span>(</a>
+<a class="sourceLine" id="cb5-6" title="6">    mtcars2,</a>
+<a class="sourceLine" id="cb5-7" title="7">    <span class="dt">mpg =</span> <span class="st">&quot;Gas Mileage&quot;</span>,</a>
+<a class="sourceLine" id="cb5-8" title="8">    <span class="dt">cyl =</span> <span class="st">&quot;Cylinders&quot;</span>,</a>
+<a class="sourceLine" id="cb5-9" title="9">    <span class="dt">disp =</span> <span class="st">&quot;Displacement&quot;</span>,</a>
+<a class="sourceLine" id="cb5-10" title="10">    <span class="dt">hp =</span> <span class="st">&quot;Horse Power&quot;</span>,</a>
+<a class="sourceLine" id="cb5-11" title="11">    <span class="dt">drat =</span> <span class="st">&quot;Rear Axle Ratio&quot;</span>,</a>
+<a class="sourceLine" id="cb5-12" title="12">    <span class="dt">wt =</span> <span class="st">&quot;Weight&quot;</span>,</a>
+<a class="sourceLine" id="cb5-13" title="13">    <span class="dt">qsec =</span> <span class="st">&quot;1/4 mile time&quot;</span>,</a>
+<a class="sourceLine" id="cb5-14" title="14">    <span class="dt">vs =</span> <span class="st">&quot;V/S&quot;</span>,</a>
+<a class="sourceLine" id="cb5-15" title="15">    <span class="dt">am =</span> <span class="st">&quot;Transmission&quot;</span>,</a>
+<a class="sourceLine" id="cb5-16" title="16">    <span class="dt">gear =</span> <span class="st">&quot;Forward Gears&quot;</span>,</a>
+<a class="sourceLine" id="cb5-17" title="17">    <span class="dt">carb =</span> <span class="st">&quot;Carburetors&quot;</span>)</a></code></pre></div>
 <p>In other portions of the vignette, we will use a linear model based on the full <code>mtcars</code> data set. We will assign the same variable labels shown above. We will also create a couple of factor variables to show how factors can be displayed.</p>
 <div id="html-output" class="section level1">
 <h1><span class="header-section-number">1</span> HTML Output</h1>
 <div id="multirow-headers-and-footers" class="section level2">
 <h2><span class="header-section-number">1.1</span> Multirow Headers and Footers</h2>
 <p>To illustrate the multirow headers and footers, we will generate a header that has both the column name and the label. The footer will summarise the values in each column by mean and standard deviation.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">custom_head &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">names</span>(mtcars2), </a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">                     labelVector<span class="op">::</span><span class="kw">get_label</span>(mtcars2,</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">                                            <span class="kw">names</span>(mtcars2))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">vapply</span>(mtcars2, mean, <span class="kw">numeric</span>(<span class="dv">1</span>)),</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">                     <span class="kw">vapply</span>(mtcars2, sd, <span class="kw">numeric</span>(<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">custom_head &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">names</span>(mtcars2), </a>
+<a class="sourceLine" id="cb6-2" title="2">                     labelVector<span class="op">::</span><span class="kw">get_label</span>(mtcars2,</a>
+<a class="sourceLine" id="cb6-3" title="3">                                            <span class="kw">names</span>(mtcars2))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb6-5" title="5"></a>
+<a class="sourceLine" id="cb6-6" title="6">custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">vapply</span>(mtcars2, mean, <span class="kw">numeric</span>(<span class="dv">1</span>)),</a>
+<a class="sourceLine" id="cb6-7" title="7">                     <span class="kw">vapply</span>(mtcars2, sd, <span class="kw">numeric</span>(<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Now we need only create a <code>dust</code> object and add our custom header and footer. To replace components of the <code>dust</code> object, we “<code>redust</code>” the component. We’ll also shade the head and foot in different shades of gray to make them stand out.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;background-color:gray;'>mpg </th>
@@ -544,19 +397,19 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2><span class="header-section-number">1.2</span> Longtable Feature</h2>
 <p>The longtable feature is named for the LaTeX package <code>longtable</code>, which will automatically break a table into multiple divisions, each of which is displayed on a separate page. We can use the long table sprinkle to break a table into divisions of any size we like. In this example, we’ll use divisions of four rows each. We will use the same header and footer as the previous example, and we’ll also make use of the <em>interfoot</em>, which is the footer placed at the bottom of each intermediate table, while the footer is placed only at the bottom of the last table. We’ll make use of the multi-cell feature for the interfoot here, although we won’t really discuss it until the next section.</p>
 <p>The code for this table is nearly identical to the previous example. We just add a <code>redust</code> call for the interfoot and add a <code>longtable</code> argument to <code>sprinkle_table</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">custom_interfoot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;To Be Continued&quot;</span>, </a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">(x &lt;-<span class="st"> </span><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw">redust</span>(custom_interfoot, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">longtable =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">custom_interfoot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;To Be Continued&quot;</span>, </a>
+<a class="sourceLine" id="cb8-2" title="2">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb8-3" title="3">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4"></a>
+<a class="sourceLine" id="cb8-5" title="5">(x &lt;-<span class="st"> </span><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="st">  </span><span class="kw">redust</span>(custom_interfoot, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">longtable =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>))</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;background-color:gray;'>mpg </th>
@@ -825,8 +678,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="multi-cell-representations" class="section level2">
 <h2><span class="header-section-number">1.3</span> Multi-cell Representations</h2>
 <p>The table above doesn’t look quite right, however, because the “To Be Continued” appears in one cell when it might look better spread out on a single line. We can use the <code>merge</code> sprinkle to merge all of the cells in the <code>interfoot</code> in order to make it appear more fluid.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;background-color:gray;'>mpg </th>
@@ -1092,11 +945,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </table></br></br>
 <p>The <code>merge</code> sprinkle may be used to join any number of conjoined cells. The following example is for illustration only, and probably wouldn’t be put to use in any meaningful application. What we will do is merge nine cells and display the value of the center cell. Take notice of where the value <code>160</code> appears in the table below compared to the table above.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">           <span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">merge_rowval =</span> <span class="dv">2</span>, <span class="dt">merge_colval =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">           <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-4" title="4">           <span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">merge_rowval =</span> <span class="dv">2</span>, <span class="dt">merge_colval =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-5" title="5">           <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:right;background-color:gray;'>mpg </th>
@@ -1365,13 +1218,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="model-summaries-with-fit-statistics" class="section level2">
 <h2><span class="header-section-number">1.4</span> Model Summaries with Fit Statistics</h2>
 <p><code>pixiedust</code> offers a few options to help simplify the preparation of model output for tabular display. If you choose to use the <code>label</code> functions from the <code>labelVector</code> package, these labels can be accessed for the table. Additionally, the levels of factor variables may be printed in a more human-readable format. (note that the <code>label</code> functions from the <code>Hmisc</code> package may also be used)</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(am) <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(gear), </a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(am) <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(gear), </a>
+<a class="sourceLine" id="cb11-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb11-3" title="3"></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>label </th>
@@ -1431,10 +1284,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </table></br></br>
 <p>Or, if we wish to see the reference value of the factors, we can request the <code>&quot;level_detail&quot;</code> descriptor.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>label </th>
@@ -1494,13 +1347,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </table></br></br>
 <p>One word of caution: The labels are pulled from the data obtained by <code>model.frame</code>, and if you apply a function to a term in your formula, you might lose the label. Consider the example below, where we include the <code>vs</code> variable, but convert it from a numeric to a factor. If retaining the label is important to you, making your conversions prior to assigning the labels will be a good habit. Don’t fret too much, however, as you can always replace a cell’s content with the <code>replace</code> sprinkle.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(vs), </a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(vs), </a>
+<a class="sourceLine" id="cb13-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb13-3" title="3"></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>label </th>
@@ -1568,18 +1421,18 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </table></br></br>
 <p>In addition to providing better labeling of terms and factor levels, <code>pixiedust</code> allows you to add model fit statistics in a similar manner that the <code>stargazer</code> package does. Under the default settings, we can build these statistics in the following manner:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb16-10" data-line-number="10">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
+<a class="sourceLine" id="cb14-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb14-3" title="3"></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
+<a class="sourceLine" id="cb14-5" title="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-7" title="7"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-8" title="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-9" title="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb14-10" title="10">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-12" title="12"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>label </th>
@@ -1679,28 +1532,28 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 <tr>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>df </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>6 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>5 </td>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'> </td>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'> </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:left;'> </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'> </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;'>nobs </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>32 </td>
 </tr>
 </table></br></br>
 <p>At times, we may find the volume of these fit statistics overwhelming and may want to display only a subset of them. This can be done with the use of the <code>glance_stats</code> argument in <code>dust</code>. In addition to selecting the statistics to display, the order in which they are displayed may also be controlled.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">     <span class="dt">glance_stats =</span> <span class="kw">c</span>(<span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;adj.r.squared&quot;</span>, <span class="st">&quot;BIC&quot;</span>, <span class="st">&quot;df&quot;</span>),</a>
-<a class="sourceLine" id="cb17-7" data-line-number="7">     <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb17-12" data-line-number="12">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
+<a class="sourceLine" id="cb15-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb15-3" title="3"></a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
+<a class="sourceLine" id="cb15-5" title="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb15-6" title="6">     <span class="dt">glance_stats =</span> <span class="kw">c</span>(<span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;adj.r.squared&quot;</span>, <span class="st">&quot;BIC&quot;</span>, <span class="st">&quot;df&quot;</span>),</a>
+<a class="sourceLine" id="cb15-7" title="7">     <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-8" title="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-10" title="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb15-12" title="12">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-13" title="13"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-14" title="14"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table style = 'margin:auto;border-collapse:collapse;'>
 <tr>
 <th colspan = '1'; rowspan = '1'; style='text-align:left;'>label </th>
@@ -1772,7 +1625,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'> </td>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'> </td>
 <td colspan = '1'; rowspan = '1'; style='text-align:left;'>df </td>
-<td colspan = '1'; rowspan = '1'; style='text-align:right;'>6 </td>
+<td colspan = '1'; rowspan = '1'; style='text-align:right;'>5 </td>
 </tr>
 </table></br></br>
 </div>
@@ -1783,22 +1636,22 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="multirow-headers-and-footers-1" class="section level2">
 <h2><span class="header-section-number">2.1</span> Multirow Headers and Footers</h2>
 <p>To illustrate the multirow headers and footers, we will generate a header that has both the column name and the label. The footer will summarise the values in each column by mean and standard deviation.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">custom_head &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">names</span>(mtcars2), </a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">                     labelVector<span class="op">::</span><span class="kw">get_label</span>(mtcars2,</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">                                            <span class="kw">names</span>(mtcars2))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6">custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">vapply</span>(mtcars2, mean, <span class="kw">numeric</span>(<span class="dv">1</span>)),</a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">                     <span class="kw">vapply</span>(mtcars2, sd, <span class="kw">numeric</span>(<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">custom_head &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">names</span>(mtcars2), </a>
+<a class="sourceLine" id="cb16-2" title="2">                     labelVector<span class="op">::</span><span class="kw">get_label</span>(mtcars2,</a>
+<a class="sourceLine" id="cb16-3" title="3">                                            <span class="kw">names</span>(mtcars2))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb16-5" title="5"></a>
+<a class="sourceLine" id="cb16-6" title="6">custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">vapply</span>(mtcars2, mean, <span class="kw">numeric</span>(<span class="dv">1</span>)),</a>
+<a class="sourceLine" id="cb16-7" title="7">                     <span class="kw">vapply</span>(mtcars2, sd, <span class="kw">numeric</span>(<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-8" title="8"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Now we need only create a <code>dust</code> object and add our custom header and footer. To replace components of the <code>dust</code> object, we “<code>redust</code>” the component. We’ll also shade the head and foot in different shades of gray to make them stand out.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
 <pre><code>##            mpg       cyl         disp          hp            drat     wt
 ## 2  Gas Mileage Cylinders Displacement Horse Power Rear Axle Ratio Weight
 ## 1           21         6          160         110             3.9   2.62
@@ -1832,19 +1685,19 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2><span class="header-section-number">2.2</span> Longtable Feature</h2>
 <p>The longtable feature is named for the LaTeX package <code>longtable</code>, which will automatically break a table into multiple divisions, each of which is displayed on a separate page. We can use the long table sprinkle to break a table into divisions of any size we like. In this example, we’ll use divisions of four rows each. We will use the same header and footer as the previous example, and we’ll also make use of the <em>interfoot</em>, which is the footer placed at the bottom of each intermediate table, while the footer is placed only at the bottom of the last table. We’ll make use of the multi-cell feature for the interfoot here, although we won’t really discuss it until the next section.</p>
 <p>The code for this table is nearly identical to the previous example. We just add a <code>redust</code> call for the interfoot and add a <code>longtable</code> argument to <code>sprinkle_table</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">custom_interfoot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;To Be Continued&quot;</span>, </a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">(x &lt;-<span class="st"> </span><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="st">  </span><span class="kw">redust</span>(custom_interfoot, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">longtable =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">custom_interfoot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;To Be Continued&quot;</span>, </a>
+<a class="sourceLine" id="cb19-2" title="2">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb19-3" title="3">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb19-4" title="4"></a>
+<a class="sourceLine" id="cb19-5" title="5">(x &lt;-<span class="st"> </span><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-6" title="6"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-7" title="7"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="st">  </span><span class="kw">redust</span>(custom_interfoot, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-9" title="9"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">longtable =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-10" title="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-12" title="12"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-13" title="13"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>))</a></code></pre></div>
 <pre><code>##                mpg       cyl         disp          hp            drat     wt
 ## 2      Gas Mileage Cylinders Displacement Horse Power Rear Axle Ratio Weight
 ## 1               21         6          160         110             3.9   2.62
@@ -1893,8 +1746,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="multi-cell-representations-1" class="section level2">
 <h2><span class="header-section-number">2.3</span> Multi-cell Representations</h2>
 <p>The table above doesn’t look quite right, however, because the “To Be Continued” appears in one cell when it might look better spread out on a single line. With the HTML output, we could use the <code>merge</code> sprinkle to merge all of the cells in the <code>interfoot</code> in order to make it appear more fluid. However, this feature isn’t supported by the console, so the best we can get is the text in one cell.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>)</a></code></pre></div>
 <pre><code>##                mpg       cyl         disp          hp            drat     wt
 ## 2      Gas Mileage Cylinders Displacement Horse Power Rear Axle Ratio Weight
 ## 1               21         6          160         110             3.9   2.62
@@ -1940,11 +1793,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 1          18.58  0.6          0.3           3.6         2.5
 ## 21          2.14 0.52         0.48          0.52        1.35</code></pre>
 <p>The <code>merge</code> sprinkle may be used to join any number of conjoined cells. The following example is for illustration only, and probably wouldn’t be put to use in any meaningful application. What we will do is merge nine cells and display the value of the center cell. Take notice of where the value <code>160</code> appears in the table below compared to the table above. In the case of markdown output, the cells aren’t actually merged, but the values of the non-displayed cells are set to <code>&quot;&quot;</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">           <span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">merge_rowval =</span> <span class="dv">2</span>, <span class="dt">merge_colval =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">           <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb23-4" title="4">           <span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">merge_rowval =</span> <span class="dv">2</span>, <span class="dt">merge_colval =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb23-5" title="5">           <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>)</a></code></pre></div>
 <pre><code>##                mpg       cyl         disp          hp            drat     wt
 ## 2      Gas Mileage Cylinders Displacement Horse Power Rear Axle Ratio Weight
 ## 1               21                                                3.9   2.62
@@ -1993,13 +1846,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="model-summaries-with-fit-statistics-1" class="section level2">
 <h2><span class="header-section-number">2.4</span> Model Summaries with Fit Statistics</h2>
 <p><code>pixiedust</code> offers a few options to help simplify the preparation of model output for tabular display. If you choose to use the <code>label</code> functions from the <code>labelVector</code> package, these labels can be accessed for the table. Additionally, the levels of factor variables may be printed in a more human-readable format. (note that the <code>label</code> functions from the <code>Hmisc</code> package may also be used)</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(am) <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(gear), </a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(am) <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(gear), </a>
+<a class="sourceLine" id="cb25-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb25-3" title="3"></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
 <pre><code>##         label  level estimate std.error statistic p.value
 ## 1 (Intercept)   &lt;NA&gt;     9.37      8.37      1.12    0.27
 ## 2        &lt;NA&gt; Manual     3.15      1.94      1.62    0.12
@@ -2008,10 +1861,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 5        &lt;NA&gt;            1.24      0.38      3.25   0.003
 ## 6        &lt;NA&gt;           -3.93      0.74     -5.29 &lt; 0.001</code></pre>
 <p>Or, if we wish to see the reference value of the factors, we can request the <code>&quot;level_detail&quot;</code> descriptor.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
 <pre><code>##         label         level_detail estimate std.error statistic p.value
 ## 1 (Intercept)                 &lt;NA&gt;     9.37      8.37      1.12    0.27
 ## 2        &lt;NA&gt; Manual vs. Automatic     3.15      1.94      1.62    0.12
@@ -2020,13 +1873,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 5        &lt;NA&gt;                          1.24      0.38      3.25   0.003
 ## 6        &lt;NA&gt;                         -3.93      0.74     -5.29 &lt; 0.001</code></pre>
 <p>One word of caution: The labels are pulled from the data obtained by <code>model.frame</code>, and if you apply a function to a term in your formula, you might lose the label. Consider the example below, where we include the <code>vs</code> variable, but convert it from a numeric to a factor. If retaining the label is important to you, making your conversions prior to assigning the labels will be a good habit. Don’t fret too much, however, as you can always replace a cell’s content with the <code>replace</code> sprinkle.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(vs), </a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(vs), </a>
+<a class="sourceLine" id="cb29-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb29-3" title="3"></a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
 <pre><code>##         label         level_detail estimate std.error statistic p.value
 ## 1 (Intercept)                 &lt;NA&gt;     9.55      9.45      1.01    0.32
 ## 2        &lt;NA&gt; Manual vs. Automatic     3.17      2.01      1.58    0.13
@@ -2036,18 +1889,18 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 6        &lt;NA&gt;                          1.23      0.51      2.39   0.025
 ## 7        &lt;NA&gt;                         -3.91      0.85     -4.62 &lt; 0.001</code></pre>
 <p>In addition to providing better labeling of terms and factor levels, <code>pixiedust</code> allows you to add model fit statistics in a similar manner that the <code>stargazer</code> package does. Under the default settings, we can build these statistics in the following manner:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
-<a class="sourceLine" id="cb33-5" data-line-number="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-8" data-line-number="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb33-10" data-line-number="10">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-12" data-line-number="12"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
+<a class="sourceLine" id="cb31-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb31-3" title="3"></a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
+<a class="sourceLine" id="cb31-5" title="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-7" title="7"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-8" title="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-9" title="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb31-10" title="10">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-12" title="12"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
 <pre><code>##            label         level_detail estimate std.error   statistic p.value
 ## 1    (Intercept)                 &lt;NA&gt;     9.37      8.37        1.12    0.27
 ## 2           &lt;NA&gt; Manual vs. Automatic     3.15      1.94        1.62    0.12
@@ -2060,22 +1913,22 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 9          sigma                 2.55                            BIC  168.34
 ## 10     statistic                29.43                       deviance   169.1
 ## 11       p.value                    0                    df.residual      26
-## 12            df                    6</code></pre>
+## 12            df                    5                           nobs      32</code></pre>
 <p>At times, we may find the volume of these fit statistics overwhelming and may want to display only a subset of them. This can be done with the use of the <code>glance_stats</code> argument in <code>dust</code>. In addition to selecting the statistics to display, the order in which they are displayed may also be controlled.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">     <span class="dt">glance_stats =</span> <span class="kw">c</span>(<span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;adj.r.squared&quot;</span>, <span class="st">&quot;BIC&quot;</span>, <span class="st">&quot;df&quot;</span>),</a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">     <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb35-12" data-line-number="12">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-13" data-line-number="13"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-14" data-line-number="14"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
+<a class="sourceLine" id="cb33-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb33-3" title="3"></a>
+<a class="sourceLine" id="cb33-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
+<a class="sourceLine" id="cb33-5" title="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb33-6" title="6">     <span class="dt">glance_stats =</span> <span class="kw">c</span>(<span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;adj.r.squared&quot;</span>, <span class="st">&quot;BIC&quot;</span>, <span class="st">&quot;df&quot;</span>),</a>
+<a class="sourceLine" id="cb33-7" title="7">     <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-8" title="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-9" title="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-10" title="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb33-12" title="12">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-13" title="13"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-14" title="14"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;console&quot;</span>)</a></code></pre></div>
 <pre><code>##         label         level_detail estimate std.error     statistic p.value
 ## 1 (Intercept)                 &lt;NA&gt;     9.37      8.37          1.12    0.27
 ## 2        &lt;NA&gt; Manual vs. Automatic     3.15      1.94          1.62    0.12
@@ -2084,7 +1937,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 5        &lt;NA&gt;                          1.24      0.38          3.25   0.003
 ## 6        &lt;NA&gt;                         -3.93      0.74         -5.29 &lt; 0.001
 ## 7         AIC               158.08                    adj.r.squared    0.82
-## 8         BIC               168.34                               df       6</code></pre>
+## 8         BIC               168.34                               df       5</code></pre>
 </div>
 </div>
 <div id="markdown-output" class="section level1">
@@ -2093,22 +1946,22 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="multirow-headers-and-footers-2" class="section level2">
 <h2><span class="header-section-number">3.1</span> Multirow Headers and Footers</h2>
 <p>To illustrate the multirow headers and footers, we will generate a header that has both the column name and the label. The footer will summarise the values in each column by mean and standard deviation.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">custom_head &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">names</span>(mtcars2), </a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">                     labelVector<span class="op">::</span><span class="kw">get_label</span>(mtcars2,</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3">                                            <span class="kw">names</span>(mtcars2))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb37-6" data-line-number="6">custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">vapply</span>(mtcars2, mean, <span class="kw">numeric</span>(<span class="dv">1</span>)),</a>
-<a class="sourceLine" id="cb37-7" data-line-number="7">                     <span class="kw">vapply</span>(mtcars2, sd, <span class="kw">numeric</span>(<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">custom_head &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">names</span>(mtcars2), </a>
+<a class="sourceLine" id="cb35-2" title="2">                     labelVector<span class="op">::</span><span class="kw">get_label</span>(mtcars2,</a>
+<a class="sourceLine" id="cb35-3" title="3">                                            <span class="kw">names</span>(mtcars2))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-4" title="4"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb35-5" title="5"></a>
+<a class="sourceLine" id="cb35-6" title="6">custom_foot &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">vapply</span>(mtcars2, mean, <span class="kw">numeric</span>(<span class="dv">1</span>)),</a>
+<a class="sourceLine" id="cb35-7" title="7">                     <span class="kw">vapply</span>(mtcars2, sd, <span class="kw">numeric</span>(<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-8" title="8"><span class="st">  </span><span class="kw">as.data.frame</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Now we need only create a <code>dust</code> object and add our custom header and footer. To replace components of the <code>dust</code> object, we “<code>redust</code>” the component. We’ll also shade the head and foot in different shades of gray to make them stand out.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="9%"></col>
@@ -2317,19 +2170,19 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2><span class="header-section-number">3.2</span> Longtable Feature</h2>
 <p>The longtable feature is named for the LaTeX package <code>longtable</code>, which will automatically break a table into multiple divisions, each of which is displayed on a separate page. We can use the long table sprinkle to break a table into divisions of any size we like. In this example, we’ll use divisions of four rows each. We will use the same header and footer as the previous example, and we’ll also make use of the <em>interfoot</em>, which is the footer placed at the bottom of each intermediate table, while the footer is placed only at the bottom of the last table. We’ll make use of the multi-cell feature for the interfoot here, although we won’t really discuss it until the next section.</p>
 <p>The code for this table is nearly identical to the previous example. We just add a <code>redust</code> call for the interfoot and add a <code>longtable</code> argument to <code>sprinkle_table</code>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">custom_interfoot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;To Be Continued&quot;</span>, </a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5">(x &lt;-<span class="st"> </span><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="st">  </span><span class="kw">redust</span>(custom_interfoot, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">longtable =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-12" data-line-number="12"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-13" data-line-number="13"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">custom_interfoot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;To Be Continued&quot;</span>, </a>
+<a class="sourceLine" id="cb37-2" title="2">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb37-3" title="3">                               <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb37-4" title="4"></a>
+<a class="sourceLine" id="cb37-5" title="5">(x &lt;-<span class="st"> </span><span class="kw">dust</span>(mtcars2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-6" title="6"><span class="st">  </span><span class="kw">redust</span>(custom_head, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-7" title="7"><span class="st">  </span><span class="kw">redust</span>(custom_foot, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-8" title="8"><span class="st">  </span><span class="kw">redust</span>(custom_interfoot, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-9" title="9"><span class="st">  </span><span class="kw">sprinkle_table</span>(<span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">longtable =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-10" title="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;head&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-12" title="12"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">bg =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-13" title="13"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>))</a></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="9%"></col>
@@ -2672,8 +2525,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="multi-cell-representations-2" class="section level2">
 <h2><span class="header-section-number">3.3</span> Multi-cell Representations</h2>
 <p>The table above doesn’t look quite right, however, because the “To Be Continued” appears in one cell when it might look better spread out on a single line. With the HTML output, we could use the <code>merge</code> sprinkle to merge all of the cells in the <code>interfoot</code> in order to make it appear more fluid. However, this feature isn’t supported by markdown, so the best we can get is the text in one cell.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>)</a></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="9%"></col>
@@ -3013,11 +2866,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p><br></p>
 <p><br></p>
 <p>The <code>merge</code> sprinkle may be used to join any number of conjoined cells. The following example is for illustration only, and probably wouldn’t be put to use in any meaningful application. What we will do is merge nine cells and display the value of the center cell. Take notice of where the value <code>160</code> appears in the table below compared to the table above. In the case of markdown output, the cells aren’t actually merged, but the values of the non-displayed cells are set to <code>&quot;&quot;</code>.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">           <span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">merge_rowval =</span> <span class="dv">2</span>, <span class="dt">merge_colval =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb41-5" data-line-number="5">           <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;interfoot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">cols =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb39-4" title="4">           <span class="dt">merge =</span> <span class="ot">TRUE</span>, <span class="dt">merge_rowval =</span> <span class="dv">2</span>, <span class="dt">merge_colval =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb39-5" title="5">           <span class="dt">halign =</span> <span class="st">&quot;center&quot;</span>)</a></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="9%"></col>
@@ -3360,13 +3213,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="model-summaries-with-fit-statistics-2" class="section level2">
 <h2><span class="header-section-number">3.4</span> Model Summaries with Fit Statistics</h2>
 <p><code>pixiedust</code> offers a few options to help simplify the preparation of model output for tabular display. If you choose to use the <code>label</code> functions from the <code>labelVector</code> package, these labels can be accessed for the table. Additionally, the levels of factor variables may be printed in a more human-readable format. (note that the <code>label</code> functions from the <code>Hmisc</code> package may also be used)</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(am) <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(gear), </a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(am) <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(gear), </a>
+<a class="sourceLine" id="cb40-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb40-3" title="3"></a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -3432,10 +3285,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p><br></p>
 <p><br></p>
 <p>Or, if we wish to see the reference value of the factors, we can request the <code>&quot;level_detail&quot;</code> descriptor.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-4" title="4"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -3501,13 +3354,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p><br></p>
 <p><br></p>
 <p>One word of caution: The labels are pulled from the data obtained by <code>model.frame</code>, and if you apply a function to a term in your formula, you might lose the label. Consider the example below, where we include the <code>vs</code> variable, but convert it from a numeric to a factor. If retaining the label is important to you, making your conversions prior to assigning the labels will be a good habit. Don’t fret too much, however, as you can always replace a cell’s content with the <code>replace</code> sprinkle.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(vs), </a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(vs), </a>
+<a class="sourceLine" id="cb42-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb42-3" title="3"></a>
+<a class="sourceLine" id="cb42-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-5" title="5"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-7" title="7"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -3581,18 +3434,18 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p><br></p>
 <p><br></p>
 <p>In addition to providing better labeling of terms and factor levels, <code>pixiedust</code> allows you to add model fit statistics in a similar manner that the <code>stargazer</code> package does. Under the default settings, we can build these statistics in the following manner:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
-<a class="sourceLine" id="cb45-5" data-line-number="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb45-10" data-line-number="10">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-12" data-line-number="12"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
+<a class="sourceLine" id="cb43-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb43-3" title="3"></a>
+<a class="sourceLine" id="cb43-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
+<a class="sourceLine" id="cb43-5" title="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-6" title="6"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-7" title="7"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-8" title="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-9" title="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb43-10" title="10">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-12" title="12"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -3695,31 +3548,31 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 <tr class="even">
 <td align="left">df</td>
-<td align="left">6</td>
+<td align="left">5</td>
 <td align="right"></td>
 <td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
+<td align="right">nobs</td>
+<td align="right">32</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
 <p>At times, we may find the volume of these fit statistics overwhelming and may want to display only a subset of them. This can be done with the use of the <code>glance_stats</code> argument in <code>dust</code>. In addition to selecting the statistics to display, the order in which they are displayed may also be controlled.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">          <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
-<a class="sourceLine" id="cb46-5" data-line-number="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb46-6" data-line-number="6">     <span class="dt">glance_stats =</span> <span class="kw">c</span>(<span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;adj.r.squared&quot;</span>, <span class="st">&quot;BIC&quot;</span>, <span class="st">&quot;df&quot;</span>),</a>
-<a class="sourceLine" id="cb46-7" data-line-number="7">     <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-9" data-line-number="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-10" data-line-number="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-11" data-line-number="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb46-12" data-line-number="12">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-13" data-line-number="13"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>gear, </a>
+<a class="sourceLine" id="cb44-2" title="2">          <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb44-3" title="3"></a>
+<a class="sourceLine" id="cb44-4" title="4"><span class="kw">dust</span>(fit, <span class="dt">descriptors =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;level_detail&quot;</span>),</a>
+<a class="sourceLine" id="cb44-5" title="5">     <span class="dt">glance_foot =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb44-6" title="6">     <span class="dt">glance_stats =</span> <span class="kw">c</span>(<span class="st">&quot;AIC&quot;</span>, <span class="st">&quot;adj.r.squared&quot;</span>, <span class="st">&quot;BIC&quot;</span>, <span class="st">&quot;df&quot;</span>),</a>
+<a class="sourceLine" id="cb44-7" title="7">     <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-8" title="8"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">round =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-9" title="9"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="dv">6</span>, <span class="dt">fn =</span> <span class="kw">quote</span>(<span class="kw">pvalString</span>(value))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-10" title="10"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-11" title="11"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">round =</span> <span class="dv">2</span>, <span class="dt">na_string =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb44-12" title="12">           <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-13" title="13"><span class="st">  </span><span class="kw">sprinkle</span>(<span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">border =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">part =</span> <span class="st">&quot;foot&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-14" title="14"><span class="st">  </span><span class="kw">sprinkle_print_method</span>(<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -3794,7 +3647,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">df</td>
-<td align="right">6</td>
+<td align="right">5</td>
 </tr>
 </tbody>
 </table>

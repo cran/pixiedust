@@ -1,6 +1,6 @@
 Package: pixiedust
 Title: Tables so Beautifully Fine-Tuned You Will Believe It's Magic
-Version: 0.9.0
+Version: 0.9.1
 Authors@R: c(person("Benjamin", "Nutter", email = "benjamin.nutter@gmail.com", role = c("aut", "cre")),
              person("David", "Kretch", role = c("ctb")))
 Description: The introduction of the 'broom' package has made converting model
@@ -21,11 +21,11 @@ LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/nutterb/pixiedust
 BugReports: https://github.com/nutterb/pixiedust/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-05-15 01:20:27 UTC; benjamin
+Packaged: 2021-01-15 11:02:14 UTC; benja
 Author: Benjamin Nutter [aut, cre],
   David Kretch [ctb]
 Maintainer: Benjamin Nutter <benjamin.nutter@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-05-15 05:50:10 UTC
+Date/Publication: 2021-01-15 11:50:02 UTC
